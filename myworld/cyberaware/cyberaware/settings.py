@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'cyberaware.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cyberaware',
+        'USER': 'cyberuser',
+        'PASSWORD': 'cyberpassword',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -116,3 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# PostgreSQL: make sure you have this database and user created:
+#   - database: cyberaware
+#   - user:     cyberuser
+#   - password: cyberpassword
+#   - host:     localhost:5432
+# And install the driver:
+#   pip install psycopg[binary]
+# Then run:
+#   python manage.py migrate
