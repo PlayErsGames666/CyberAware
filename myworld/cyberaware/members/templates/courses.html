@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CyberAware – Courses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                    radial-gradient(circle at 15% 10%, rgba(96, 165, 250, 0.55), transparent 52%),
+                    radial-gradient(circle at 85% 90%, rgba(59, 130, 246, 0.45), transparent 55%),
+                    linear-gradient(180deg, #0b1220 0%, #070f1d 55%, #061126 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .page-shell {
+            width: 100%;
+            max-width: 980px;
+            min-height: 560px;
+            height: auto;
+            max-height: calc(100vh - 48px);
+            border-radius: 14px;
+            overflow: auto;
+            box-shadow:
+                    0 24px 60px rgba(15, 23, 42, 0.65),
+                    0 0 0 1px rgba(148, 163, 184, 0.2);
+            display: grid;
+            grid-template-columns: 1fr minmax(0, 420px) 1fr;
+            background: #60a5fa;
+        }
+
+        .side {
+            background: #60a5fa;
+        }
+
+        .center {
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 46px 44px 34px;
+            gap: 18px;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stack-icon {
+            width: 54px;
+            height: 54px;
+            color: #0f172a;
+            opacity: 0.9;
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #0f172a;
+            font-style: italic;
+        }
+
+        .courses {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .course-row {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 26px 1fr;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 6px;
+            border-radius: 10px;
+        }
+
+        .course-row:hover {
+            background: rgba(15, 23, 42, 0.03);
+        }
+
+        .radio {
+            width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            border: 2px solid rgba(15, 23, 42, 0.16);
+            display: grid;
+            place-items: center;
+            background: #ffffff;
+        }
+
+        .radio-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: #0f172a;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.12s ease, transform 0.12s ease;
+        }
+
+        .course-input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .course-input:checked + .course-label .radio-dot {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .course-label {
+            display: contents;
+            cursor: pointer;
+        }
+
+        .course-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: #111827;
+            font-style: italic;
+        }
+
+        .course-title:focus-visible {
+            outline: none;
+        }
+
+        .info {
+            width: 100%;
+            min-height: 52px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(96, 165, 250, 0.18);
+            color: #0f172a;
+            font-size: 0.9rem;
+            line-height: 1.35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .back {
+            margin-top: 6px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: rgba(15, 23, 42, 0.75);
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 860px) {
+            .page-shell {
+                grid-template-columns: 1fr;
+                max-height: none;
+                max-width: 560px;
+            }
+
+            .side {
+                display: none;
+            }
+        }
+
+        /* Short screens: allow page to start higher + scroll */
+        @media (max-height: 640px) {
+            body {
+                align-items: flex-start;
+            }
+
+            .page-shell {
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-shell">
+    <div class="side" aria-hidden="true"></div>
+
+    <main class="center">
+        <header class="header">
+            <svg class="stack-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3 3 7.5 12 12l9-4.5L12 3Z" stroke="currentColor" stroke-width="1.5" />
+                <path d="M3 12l9 4.5 9-4.5" stroke="currentColor" stroke-width="1.5" />
+                <path d="M3 16.5 12 21l9-4.5" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            <h1>Courses</h1>
+        </header>
+
+        <section class="courses" aria-label="Courses list">
+            {% for c in courses %}
+                <div class="course-row" data-description="{{ c.description|escape }}">
+                    <input class="course-input" type="radio" name="course" id="course-{{ c.id }}" value="{{ c.id }}" {% if forloop.first %}checked{% endif %}>
+                    <label class="course-label" for="course-{{ c.id }}">
+                        <span class="radio" aria-hidden="true"><span class="radio-dot"></span></span>
+                        <span class="course-title" tabindex="0">{{ c.title }}</span>
+                    </label>
+                </div>
+            {% endfor %}
+        </section>
+
+        <div class="info" id="courseInfo" aria-live="polite"></div>
+
+        <a class="back" href="/">← Back</a>
+    </main>
+
+    <div class="side" aria-hidden="true"></div>
+</div>
+
+<script>
+    (function () {
+        const rows = Array.from(document.querySelectorAll(".course-row"));
+        const info = document.getElementById("courseInfo");
+
+        function setInfo(text) {
+            info.textContent = text || "Hover a course name to see details.";
+        }
+
+        function getRowDescription(row) {
+            return row?.dataset?.description || "";
+        }
+
+        // Initial text = selected course
+        const initiallyChecked = document.querySelector(".course-input:checked");
+        const initialRow = initiallyChecked?.closest(".course-row");
+        setInfo(getRowDescription(initialRow));
+
+        rows.forEach((row) => {
+            const input = row.querySelector(".course-input");
+            const title = row.querySelector(".course-title");
+
+            row.addEventListener("mouseenter", () => setInfo(getRowDescription(row)));
+            row.addEventListener("focusin", () => setInfo(getRowDescription(row)));
+            row.addEventListener("mouseleave", () => {
+                const checked = document.querySelector(".course-input:checked");
+                setInfo(getRowDescription(checked?.closest(".course-row")));
+            });
+            row.addEventListener("focusout", () => {
+                const checked = document.querySelector(".course-input:checked");
+                setInfo(getRowDescription(checked?.closest(".course-row")));
+            });
+
+            input?.addEventListener("change", () => setInfo(getRowDescription(row)));
+
+            // Click on course title opens lectures page directly
+            title?.addEventListener("click", (event) => {
+                event.preventDefault();
+                const id = input?.value;
+                if (!id) return;
+                window.location.href = `/courses/${id}/`;
+            });
+        });
+    })();
+</script>
+</body>
+</html>

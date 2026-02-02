@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Member
+
+
+@admin.register(Member)
+class MemberAdmin(admin.ModelAdmin):
+    list_display = ("id", "first_name", "last_name", "phone", "joined_date")
+    search_fields = ("first_name", "last_name")
+    list_filter = ("joined_date",)

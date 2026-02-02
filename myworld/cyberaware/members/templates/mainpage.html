@@ -137,13 +137,10 @@
             text-decoration: none;
             font-weight: 500;
             position: relative;
+            transition: color 0.12s ease;
         }
 
-        .nav-link.primary {
-            color: #1d4ed8;
-        }
-
-        .nav-link.primary::after {
+        .nav-link::after {
             content: "";
             position: absolute;
             left: 0;
@@ -152,6 +149,19 @@
             height: 2px;
             border-radius: 999px;
             background: linear-gradient(to right, #4f46e5, #a855f7);
+            opacity: 0;
+            transform: scaleX(0.9);
+            transform-origin: center;
+            transition: opacity 0.12s ease, transform 0.12s ease;
+        }
+
+        .nav-link:hover {
+            color: #1d4ed8;
+        }
+
+        .nav-link:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
         }
 
         .main-copy {
@@ -292,7 +302,7 @@
                 <div class="brand-name">CyberAware</div>
             </div>
             <nav class="nav-links" aria-label="Primary navigation">
-                <a href="#" class="nav-link primary">Courses</a>
+                <a href="/courses/" class="nav-link primary">Courses</a>
                 <a href="/login/" class="nav-link">Log in</a>
             </nav>
         </header>
