@@ -5,6 +5,20 @@
     <title>CyberAware – Lectures</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        :root {
+            --bg-surface: #0b1220;
+            --accent: #38bdf8;
+            --accent-soft: rgba(56, 189, 248, 0.15);
+            --accent-strong: #eab308;
+            --card: #020617;
+            --card-soft: rgba(15, 23, 42, 0.85);
+            --border-subtle: rgba(148, 163, 184, 0.35);
+            --text-main: #e5e7eb;
+            --text-soft: #9ca3af;
+            --text-strong: #f9fafb;
+            --sidebar: #0f172a;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -15,267 +29,315 @@
             min-height: 100vh;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background:
-                    radial-gradient(circle at 15% 10%, rgba(96, 165, 250, 0.50), transparent 52%),
-                    radial-gradient(circle at 85% 90%, rgba(59, 130, 246, 0.42), transparent 55%),
-                    linear-gradient(180deg, #0b1220 0%, #070f1d 55%, #061126 100%);
+                    radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.45), transparent 55%),
+                    radial-gradient(circle at 88% 92%, rgba(59, 130, 246, 0.45), transparent 55%),
+                    linear-gradient(180deg, #020617 0%, #020617 45%, #020617 100%);
+            color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
-            overflow-y: auto;
+            padding: 20px;
         }
 
         .shell {
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr) 280px;
             width: 100%;
-            max-width: 1120px;
+            max-width: 1200px;
             min-height: 600px;
-            height: auto;
-            max-height: calc(100vh - 48px);
-            border-radius: 10px;
+            background: rgba(15, 23, 42, 0.92);
+            border-radius: 18px;
             overflow: hidden;
             box-shadow:
-                    0 24px 60px rgba(15, 23, 42, 0.65),
-                    0 0 0 1px rgba(148, 163, 184, 0.2);
-            display: grid;
-            grid-template-columns: 280px minmax(0, 1fr) 300px;
-            background: #9ad8e9;
+                    0 32px 80px rgba(15, 23, 42, 0.9),
+                    0 0 0 1px rgba(148, 163, 184, 0.35);
         }
 
-        .panel {
-            background: #9ad8e9;
-            border-right: 1px solid rgba(15, 23, 42, 0.25);
+        /* Sidebar */
+        .sidebar {
+            background:
+                    radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.4), transparent 55%),
+                    radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.25), transparent 55%),
+                    var(--sidebar);
+            border-right: 1px solid rgba(15, 23, 42, 0.9);
+            padding: 24px 22px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
 
-        .panel.right {
-            border-right: none;
-            border-left: 1px solid rgba(15, 23, 42, 0.25);
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .panel-header {
-            padding: 22px 18px;
-            border-bottom: 1px solid rgba(15, 23, 42, 0.25);
-            font-size: 1.8rem;
-            font-style: italic;
-            color: rgba(15, 23, 42, 0.85);
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background:
+                    radial-gradient(circle at 20% 20%, #38bdf8, transparent 60%),
+                    radial-gradient(circle at 80% 80%, #0ea5e9, transparent 60%),
+                    #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-mark {
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            border: 2px solid rgba(56, 189, 248, 0.85);
+        }
+
+        .brand-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--text-strong);
+        }
+
+        .section-header {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(148, 163, 184, 0.9);
+            margin-bottom: 8px;
         }
 
         .lecture-list {
-            padding: 12px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 6px;
+            max-height: 400px;
+            overflow-y: auto;
         }
 
         .lecture-link {
             display: block;
-            padding: 18px 18px;
+            padding: 10px 12px;
+            border-radius: 8px;
             text-decoration: none;
-            font-size: 1.4rem;
-            font-style: italic;
-            color: rgba(15, 23, 42, 0.85);
+            font-size: 0.9rem;
+            color: var(--text-main);
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid transparent;
+            transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
         }
 
         .lecture-link:hover {
-            background: rgba(255, 255, 255, 0.18);
+            background: rgba(15, 23, 42, 0.9);
+            border-color: rgba(148, 163, 184, 0.5);
+            transform: translateX(2px);
         }
 
         .lecture-link.active {
-            background: rgba(255, 255, 255, 0.30);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(14, 165, 233, 0.2));
+            border-color: rgba(56, 189, 248, 0.5);
+            color: var(--text-strong);
+            font-weight: 500;
         }
 
-        .left-footer {
+        .back-button {
             margin-top: auto;
-            padding: 16px 18px;
-            border-top: 1px solid rgba(15, 23, 42, 0.25);
+            padding-top: 8px;
+            border-top: 1px solid rgba(15, 23, 42, 0.9);
+        }
+
+        .nav-button {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 10px;
+            padding: 9px 11px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            background: rgba(15, 23, 42, 0.75);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
         }
 
-        .settings {
+        .nav-button span {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
-            border-radius: 999px;
-            background: rgba(99, 102, 241, 0.28);
-            color: rgba(15, 23, 42, 0.85);
-            text-decoration: none;
-            font-style: italic;
-            font-size: 1.1rem;
+            gap: 8px;
         }
 
-        .back-courses {
-            font-size: 0.95rem;
-            color: rgba(15, 23, 42, 0.75);
-            text-decoration: none;
+        .nav-button svg {
+            width: 16px;
+            height: 16px;
         }
 
-        .back-courses:hover {
-            text-decoration: underline;
+        .nav-button:hover {
+            background: rgba(15, 23, 42, 0.9);
+            border-color: rgba(148, 163, 184, 0.7);
+            transform: translateY(-1px);
         }
 
-        .gear {
-            width: 30px;
-            height: 30px;
-            border-radius: 10px;
-            display: grid;
-            place-items: center;
-            border: 1px solid rgba(15, 23, 42, 0.35);
-            background: rgba(255, 255, 255, 0.20);
-        }
-
-        .main {
-            background: #fff7f7;
+        /* Main content */
+        .content {
+            padding: 24px 26px 22px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 34px 26px;
+            gap: 18px;
+            background:
+                    radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.38), transparent 55%),
+                    radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.45), transparent 60%),
+                    var(--bg-surface);
+            overflow-y: auto;
         }
 
         .course-pill {
-            font-size: 0.9rem;
-            color: rgba(15, 23, 42, 0.65);
-            background: rgba(154, 216, 233, 0.45);
-            border: 1px solid rgba(15, 23, 42, 0.18);
-            padding: 6px 12px;
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            padding: 6px 14px;
             border-radius: 999px;
-            margin-bottom: 18px;
-            text-align: center;
+            align-self: flex-start;
         }
 
-        .main h1 {
-            font-size: 1.8rem;
+        .headline-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        .headline-row h1 {
+            font-size: 1.55rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
             font-style: italic;
-            color: rgba(15, 23, 42, 0.85);
-            margin-top: 6px;
+            color: var(--text-strong);
         }
 
-        .main .content {
-            margin-top: 120px;
+        .headline-caption {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+        }
+
+        .lecture-content {
+            margin-top: 20px;
             font-size: 0.95rem;
-            color: rgba(15, 23, 42, 0.85);
-            text-align: center;
-            max-width: 520px;
-            line-height: 1.5;
+            color: var(--text-main);
+            line-height: 1.7;
+            max-width: 100%;
         }
 
-        .main .muted {
-            margin-top: 10px;
-            font-size: 0.95rem;
-            font-style: italic;
-            color: rgba(15, 23, 42, 0.65);
+        .lecture-content p {
+            margin-bottom: 16px;
         }
 
-        .right-inner {
-            height: 100%;
+        .footer-row {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: var(--text-soft);
+        }
+
+        .footer-row a {
+            color: #bae6fd;
+            text-decoration: none;
+        }
+
+        .footer-row a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right panel */
+        .right-panel {
+            background:
+                    radial-gradient(circle at 100% 0, rgba(96, 165, 250, 0.3), transparent 55%),
+                    radial-gradient(circle at 0 100%, rgba(34, 197, 94, 0.2), transparent 55%),
+                    var(--sidebar);
+            border-left: 1px solid rgba(15, 23, 42, 0.9);
+            padding: 24px 22px 22px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 22px 18px;
-            gap: 10px;
+            gap: 20px;
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
 
         .avatar {
-            width: 92px;
-            height: 92px;
+            width: 72px;
+            height: 72px;
             border-radius: 999px;
-            border: 4px solid rgba(15, 23, 42, 0.35);
-            background: rgba(255, 255, 255, 0.35);
+            border: 2px solid rgba(148, 163, 184, 0.55);
             display: grid;
             place-items: center;
+            background: radial-gradient(circle at 30% 10%, #0ea5e9, #0369a1);
+            color: var(--text-strong);
+            font-weight: 600;
+            font-size: 1.4rem;
+            align-self: center;
+        }
+
+        .user-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            text-align: center;
+        }
+
+        .user-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--text-strong);
+        }
+
+        .user-id {
+            font-size: 0.8rem;
+            color: var(--text-soft);
+        }
+
+        .progress-section {
             margin-top: 8px;
         }
 
-        .avatar svg {
-            width: 52px;
-            height: 52px;
-            opacity: 0.8;
+        .progress-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(148, 163, 184, 0.9);
+            margin-bottom: 8px;
         }
 
-        .username {
-            font-size: 1.7rem;
-            font-style: italic;
-            color: rgba(15, 23, 42, 0.85);
-            margin-top: 4px;
-        }
-
-        .userid {
-            font-size: 0.95rem;
-            font-style: italic;
-            color: rgba(15, 23, 42, 0.55);
-            margin-top: -6px;
-        }
-
-        .progress-title {
-            margin-top: 16px;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: rgba(15, 23, 42, 0.75);
-        }
-
-        .progress {
-            width: 210px;
-            height: 18px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.55);
-            border: 1px solid rgba(15, 23, 42, 0.35);
+        .progress-bar-shell {
             position: relative;
+            width: 100%;
+            height: 14px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
             overflow: hidden;
+            border: 1px solid rgba(24, 35, 58, 0.9);
         }
 
-        .progress::before {
-            content: "";
+        .progress-bar-fill {
             position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: calc(var(--pct, 0) * 1%);
-            background: rgba(239, 68, 68, 0.9);
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #facc15 0%, #f97316 40%, #22c55e 100%);
+            transform-origin: left center;
         }
 
-        .pct {
-            font-size: 1.1rem;
-            font-style: italic;
-            color: rgba(15, 23, 42, 0.75);
+        .progress-percent {
             margin-top: 6px;
-        }
-
-        .brand {
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding-bottom: 6px;
-        }
-
-        .brand-mark {
-            width: 54px;
-            height: 54px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(15, 23, 42, 0.20);
-            display: grid;
-            place-items: center;
-            overflow: hidden;
-        }
-
-        .brand-mark svg {
-            width: 46px;
-            height: 46px;
-            opacity: 0.55;
-        }
-
-        .brand-name {
-            font-size: 1.7rem;
-            font-style: italic;
-            font-weight: 600;
-            color: rgba(15, 23, 42, 0.55);
-            text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
-        }
-
-        /* Make left panel a flex column */
-        .panel.left {
-            display: flex;
-            flex-direction: column;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            text-align: center;
         }
 
         @media (max-width: 980px) {
@@ -288,30 +350,63 @@
             .shell {
                 grid-template-columns: 1fr;
                 max-width: 720px;
-                max-height: none;
+                min-height: 0;
             }
 
-            .panel {
+            .sidebar {
                 border-right: none;
-                border-left: none;
-                border-bottom: 1px solid rgba(15, 23, 42, 0.25);
+                border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+                flex-direction: row;
+                align-items: center;
+                gap: 18px;
             }
 
-            .panel.right {
-                border-bottom: none;
+            .lecture-list {
+                flex-direction: row;
+                max-height: none;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .right-panel {
+                border-left: none;
+                border-top: 1px solid rgba(15, 23, 42, 0.9);
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .profile-section {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .back-button {
+                display: none;
             }
         }
 
-        @media (max-height: 640px) {
-            body { align-items: flex-start; }
-            .shell { max-height: none; }
+        @media (max-width: 520px) {
+            body {
+                padding: 8px;
+            }
+
+            .content {
+                padding: 18px 16px 16px;
+            }
         }
     </style>
 </head>
 <body>
 <div class="shell">
-    <aside class="panel left">
-        <div class="panel-header">Lectures</div>
+    <aside class="sidebar">
+        <div class="brand-header">
+            <div class="brand-logo">
+                <div class="brand-mark"></div>
+            </div>
+            <div class="brand-name">CyberAware</div>
+        </div>
+
+        <div class="section-header">Lectures</div>
         <nav class="lecture-list" aria-label="Lecture list">
             {% if lectures %}
                 {% for l in lectures %}
@@ -325,66 +420,82 @@
             {% endif %}
         </nav>
 
-        <div class="left-footer">
-            <a class="settings" href="#">Settings</a>
-            <a class="back-courses" href="/courses/">← Back to courses</a>
-            <div class="gear" aria-hidden="true">⚙</div>
+        <div class="back-button">
+            <a href="/courses/" class="nav-button">
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="1.4"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Back to courses</span>
+                </span>
+            </a>
         </div>
     </aside>
 
-    <main class="main">
+    <main class="content">
         <div class="course-pill">{{ course_title }}</div>
 
+        <div class="headline-row">
+            {% if message %}
+                <h1>Coming soon</h1>
+            {% else %}
+                <h1>{{ active_lecture.heading }}</h1>
+            {% endif %}
+            <span class="headline-caption">Lecture content</span>
+        </div>
+
         {% if message %}
-            <h1>Coming soon</h1>
-            <div class="muted">{{ message }}</div>
+            <div class="lecture-content">
+                <p>{{ message }}</p>
+            </div>
         {% else %}
-            <h1>{{ active_lecture.heading }}</h1>
-            <div class="content">{{ active_lecture.content }}</div>
+            <div class="lecture-content">
+                {{ active_lecture.content|safe }}
+            </div>
         {% endif %}
+
+        <div class="footer-row">
+            <span>CyberAware Learning Platform</span>
+            <a href="/">← Back to main</a>
+        </div>
     </main>
 
-    <aside class="panel right">
-        <div class="right-inner">
-            <div class="avatar" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Z" fill="rgba(15,23,42,0.75)"/>
-                    <path d="M4.5 20.5c1.7-4 13.3-4 15 0" stroke="rgba(15,23,42,0.75)" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </div>
-
-            <div class="username">
+    <aside class="right-panel">
+        <div class="profile-section">
+            <div class="avatar">
                 {% if request.user.is_authenticated %}
-                    {{ request.user.username }}
+                    {{ request.user.username|first|upper }}
                 {% else %}
-                    Username
+                    U
                 {% endif %}
             </div>
-            <div class="userid">
-                {% if request.user.is_authenticated %}
-                    id:{{ request.user.id }}
-                {% else %}
-                    id:000000
-                {% endif %}
-            </div>
-
-            <div class="progress-title">Progress bar</div>
-            <div class="progress" style="--pct: {{ progress_percent }};"></div>
-            <div class="pct">{{ progress_percent }}%</div>
-
-            <div class="brand" aria-hidden="true">
-                <div class="brand-mark">
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <path d="M8 24c8-10 24-10 32 0-8 10-24 10-32 0Z" stroke="rgba(15,23,42,0.7)" stroke-width="2"/>
-                        <path d="M14 24c5-6 15-6 20 0-5 6-15 6-20 0Z" stroke="rgba(15,23,42,0.55)" stroke-width="2"/>
-                        <path d="M20 24c3-3 5-3 8 0-3 3-5 3-8 0Z" stroke="rgba(15,23,42,0.45)" stroke-width="2"/>
-                    </svg>
+            <div class="user-meta">
+                <div class="user-name">
+                    {% if request.user.is_authenticated %}
+                        {{ request.user.username }}
+                    {% else %}
+                        Username
+                    {% endif %}
                 </div>
-                <div class="brand-name">CyberAware</div>
+                <div class="user-id">
+                    {% if request.user.is_authenticated %}
+                        id:{{ request.user.id }}
+                    {% else %}
+                        id:000000
+                    {% endif %}
+                </div>
             </div>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-label">Progress</div>
+            <div class="progress-bar-shell">
+                <div class="progress-bar-fill" style="transform: scaleX({{ progress_percent|default:0 }}/100);"></div>
+            </div>
+            <div class="progress-percent">{{ progress_percent|default:0 }}%</div>
         </div>
     </aside>
 </div>
 </body>
 </html>
-

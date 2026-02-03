@@ -5,6 +5,20 @@
     <title>CyberAware – Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        :root {
+            --bg-surface: #0b1220;
+            --accent: #38bdf8;
+            --accent-soft: rgba(56, 189, 248, 0.15);
+            --accent-strong: #eab308;
+            --card: #020617;
+            --card-soft: rgba(15, 23, 42, 0.85);
+            --border-subtle: rgba(148, 163, 184, 0.35);
+            --text-main: #e5e7eb;
+            --text-soft: #9ca3af;
+            --text-strong: #f9fafb;
+            --sidebar: #0f172a;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -14,33 +28,42 @@
         body {
             min-height: 100vh;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top left, #0f172a 0%, #020617 40%, #0369a1 100%);
+            background:
+                    radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.45), transparent 55%),
+                    radial-gradient(circle at 88% 92%, rgba(59, 130, 246, 0.45), transparent 55%),
+                    linear-gradient(180deg, #020617 0%, #020617 45%, #020617 100%);
+            color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
 
-        .page-shell {
-            width: 100%;
-            max-width: 1024px;
-            height: 560px;
-            background: #020617;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow:
-                    0 24px 60px rgba(15, 23, 42, 0.85),
-                    0 0 0 1px rgba(148, 163, 184, 0.2);
+        .shell {
             display: grid;
             grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            width: 100%;
+            max-width: 1024px;
+            min-height: 560px;
+            background: rgba(15, 23, 42, 0.92);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow:
+                    0 32px 80px rgba(15, 23, 42, 0.9),
+                    0 0 0 1px rgba(148, 163, 184, 0.35);
         }
 
-        /* Left visual */
+        /* Left visual panel */
         .visual-panel {
             position: relative;
-            background: #0b1120;
+            background:
+                    radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.4), transparent 55%),
+                    radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.25), transparent 55%),
+                    var(--sidebar);
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 40px;
         }
 
         .visual-panel::before {
@@ -52,14 +75,16 @@
                     radial-gradient(circle at 90% 100%, rgba(59, 130, 246, 0.6), transparent 60%);
             mix-blend-mode: screen;
             opacity: 0.8;
+            pointer-events: none;
         }
 
         .hero-graphic {
             position: relative;
             width: 100%;
             height: 100%;
-            border-radius: 0;
+            border-radius: 12px;
             overflow: hidden;
+            z-index: 1;
         }
 
         .hero-graphic img {
@@ -71,10 +96,13 @@
 
         /* Right login panel */
         .login-panel {
-            background: #e0f2fe;
             padding: 32px 40px;
             display: flex;
             flex-direction: column;
+            background:
+                    radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.38), transparent 55%),
+                    radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.45), transparent 60%),
+                    var(--bg-surface);
         }
 
         .brand-row {
@@ -84,7 +112,7 @@
             margin-bottom: 40px;
         }
 
-        .brand-mark {
+        .brand-logo {
             width: 40px;
             height: 40px;
             border-radius: 12px;
@@ -97,11 +125,11 @@
             justify-content: center;
         }
 
-        .brand-mark-inner {
+        .brand-mark {
             width: 22px;
             height: 22px;
             border-radius: 999px;
-            border: 2px solid rgba(191, 219, 254, 0.85);
+            border: 2px solid rgba(56, 189, 248, 0.85);
         }
 
         .brand-text {
@@ -109,7 +137,7 @@
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: #0f172a;
+            color: var(--text-strong);
         }
 
         .login-card {
@@ -122,14 +150,14 @@
             font-weight: 600;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #64748b;
+            color: var(--text-soft);
             margin-bottom: 18px;
         }
 
         .login-card h1 {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #0f172a;
+            color: var(--text-strong);
             margin-bottom: 22px;
         }
 
@@ -140,17 +168,22 @@
         .pill-input {
             width: 100%;
             border-radius: 999px;
-            border: none;
+            border: 1px solid var(--border-subtle);
             padding: 10px 20px;
-            background: #e5e7eb;
-            color: #111827;
+            background: rgba(15, 23, 42, 0.75);
+            color: var(--text-main);
             font-size: 0.95rem;
             outline: none;
-            box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.5);
+            transition: border-color 0.15s ease, background 0.15s ease;
         }
 
         .pill-input::placeholder {
-            color: #9ca3af;
+            color: var(--text-soft);
+        }
+
+        .pill-input:focus {
+            border-color: var(--accent);
+            background: rgba(15, 23, 42, 0.9);
         }
 
         .login-button {
@@ -159,13 +192,13 @@
             border-radius: 999px;
             border: none;
             padding: 10px 24px;
-            background: linear-gradient(to right, #4f46e5, #8b5cf6, #ec4899);
-            color: #f9fafb;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            color: #020617;
             font-weight: 600;
             cursor: pointer;
             box-shadow:
-                    0 14px 30px rgba(79, 70, 229, 0.45),
-                    0 0 0 1px rgba(129, 140, 248, 0.35);
+                    0 14px 30px rgba(56, 189, 248, 0.45),
+                    0 0 0 1px rgba(56, 189, 248, 0.35);
             transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
         }
 
@@ -173,8 +206,8 @@
             transform: translateY(-1px);
             filter: brightness(1.03);
             box-shadow:
-                    0 18px 40px rgba(79, 70, 229, 0.6),
-                    0 0 0 1px rgba(129, 140, 248, 0.5);
+                    0 18px 40px rgba(56, 189, 248, 0.6),
+                    0 0 0 1px rgba(56, 189, 248, 0.5);
         }
 
         .login-button:active {
@@ -184,13 +217,8 @@
         .helper-row {
             margin-top: 16px;
             font-size: 0.85rem;
-            color: #475569;
-        }
-
-        .helper-row a {
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 500;
+            color: var(--text-soft);
+            line-height: 1.5;
         }
 
         .back-row {
@@ -202,9 +230,15 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: #0f172a;
+            color: #bae6fd;
             text-decoration: none;
             font-weight: 500;
+            transition: color 0.15s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
         }
 
         .back-link span {
@@ -214,24 +248,43 @@
         .error-message {
             margin-top: 10px;
             font-size: 0.85rem;
-            color: #b91c1c;
+            color: #f87171;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
         }
 
         @media (max-width: 900px) {
-            .page-shell {
+            .shell {
                 max-width: 640px;
-                height: auto;
+                min-height: auto;
                 grid-template-columns: 1fr;
             }
 
             .visual-panel {
                 height: 220px;
+                order: -1;
+            }
+
+            .login-panel {
+                padding: 24px 28px 28px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 8px;
+            }
+
+            .login-panel {
+                padding: 20px 20px 24px;
             }
         }
     </style>
 </head>
 <body>
-<div class="page-shell">
+<div class="shell">
     <section class="visual-panel" aria-hidden="true">
         <div class="hero-graphic">
             <img src="/static/images/cyberaware_main.png" alt="CyberAware illustration">
@@ -240,8 +293,8 @@
 
     <section class="login-panel">
         <div class="brand-row">
-            <div class="brand-mark">
-                <div class="brand-mark-inner"></div>
+            <div class="brand-logo">
+                <div class="brand-mark"></div>
             </div>
             <div class="brand-text">CyberAware</div>
         </div>
