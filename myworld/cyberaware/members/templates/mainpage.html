@@ -302,8 +302,8 @@
                 <div class="brand-name">CyberAware</div>
             </div>
             <nav class="nav-links" aria-label="Primary navigation">
-                <a href="/courses/" class="nav-link primary">Courses</a>
-                <a href="/login/" class="nav-link">Log in</a>
+                <a href="{% url 'courses' %}" class="nav-link primary">Courses</a>
+                <a href="{% url 'login' %}" class="nav-link">Log in</a>
             </nav>
         </header>
 
@@ -315,9 +315,9 @@
                 interactive and gamified learning experiences.
             </p>
             <div class="cta-row">
-                <button class="cta-button" type="button">
-                    More info
-                </button>
+                <a class="cta-button" href="{% url 'login' %}">
+                    Start learning
+                </a>
             </div>
 
             <p class="footer-note">

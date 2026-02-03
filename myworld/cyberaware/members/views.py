@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import loader
@@ -20,12 +20,37 @@ def login_view(request):
         username = request.POST.get("username", "").strip()
         password = request.POST.get("password", "")
 
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect("members")
+        if not username or not password:
+            message = "Please enter both login and password."
         else:
-            message = "Invalid login or password."
+            # 1. Попытаться аутентифицировать как существующего пользователя
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect("profile")
+
+            # 2. Если пользователя нет — попробовать создать «регистрацию»
+            User = get_user_model()
+            try:
+                existing = User.objects.filter(username=username).first()
+            except Exception:
+                existing = None
+
+            if existing is not None:
+                # Пользователь существует, но пароль не подходит
+                message = "Invalid login or password."
+            else:
+                # Создаём нового пользователя и базовую запись в Member
+                user = User.objects.create_user(username=username, password=password)
+                Member.objects.create(
+                    first_name=username,
+                    last_name="",
+                    phone=None,
+                    joined_date=None,
+                )
+                login(request, user)
+                return redirect("profile")
 
     return render(request, "login.html", {"message": message})
 
@@ -133,5 +158,46 @@ def course_lectures_view(request, course_id: str):
             "active_lecture": active_lecture,
             "message": "",
             "progress_percent": progress_percent,
+        },
+    )
+
+
+def profile_view(request):
+    """
+    Simple user profile page that mirrors the layout from the mockup
+    but with a cleaner, more modern visual style.
+    """
+
+    user = request.user
+    if user.is_authenticated:
+        display_name = user.get_full_name() or user.get_username() or "User"
+        user_id = f"id:{user.id:06d}"
+    else:
+        display_name = "Guest"
+        user_id = "id:000000"
+
+    # Placeholder data – can later be replaced with real progress
+    xp_percent = 62
+    achievements = [
+        {
+            "title": "First Steps",
+            "subtitle": "Completed your first lecture",
+            "icon": "pulse",
+        },
+        {
+            "title": "Risk Watcher",
+            "subtitle": "Reviewed basic cyber risks",
+            "icon": "alert",
+        },
+    ]
+
+    return render(
+        request,
+        "profile.html",
+        {
+            "display_name": display_name,
+            "user_id": user_id,
+            "xp_percent": xp_percent,
+            "achievements": achievements,
         },
     )
