@@ -201,3 +201,11 @@ def profile_view(request):
             "achievements": achievements,
         },
     )
+
+
+def settings_view(request):
+    """
+    Simple settings page that uses the standalone settings.html
+    template. Behaviour is a static prototype for now.
+    """
+    return render(request, "settings.html")
