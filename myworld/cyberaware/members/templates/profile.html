@@ -347,6 +347,219 @@
             text-decoration: underline;
         }
 
+        /* Drawer styles */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.95));
+            border-bottom: 1px solid var(--border-subtle);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 24px 26px 32px;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 0 0 18px 18px;
+        }
+
+        .drawer.active {
+            transform: translateY(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .drawer-header h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-strong);
+            letter-spacing: 0.02em;
+        }
+
+        .drawer-close {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .drawer-close:hover {
+            background: rgba(15, 23, 42, 0.9);
+            border-color: rgba(148, 163, 184, 0.7);
+        }
+
+        .drawer-close svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .drawer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .form-group input {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            transition: border-color 0.15s ease, background 0.15s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-soft);
+            opacity: 0.6;
+        }
+
+        .drawer-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: 1px solid transparent;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            color: #020617;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0ea5e9, #22c55e);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(15, 23, 42, 0.75);
+            color: var(--text-main);
+            border-color: var(--border-subtle);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(15, 23, 42, 0.9);
+            border-color: rgba(148, 163, 184, 0.7);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .edit-profile-btn {
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .edit-profile-btn:hover {
+            background: rgba(15, 23, 42, 0.9);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .edit-profile-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            color: #86efac;
+            display: block;
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+            display: block;
+        }
+
         @media (max-width: 860px) {
             .shell {
                 grid-template-columns: 1fr;
@@ -403,6 +616,13 @@
                 <div class="user-name">{{ display_name }}</div>
                 <div class="user-id">{{ user_id }}</div>
             </div>
+            <button class="edit-profile-btn" onclick="openDrawer()">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                    <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                </svg>
+                <span>Редактировать</span>
+            </button>
         </div>
 
         <nav class="nav" aria-label="Profile navigation">
@@ -550,6 +770,174 @@
         </div>
     </main>
 </div>
+
+<!-- Drawer overlay -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<!-- Drawer -->
+<div class="drawer" id="drawer">
+    <div class="drawer-header">
+        <h2>Редактировать профиль</h2>
+        <button class="drawer-close" onclick="closeDrawer()" aria-label="Close drawer">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+    </div>
+    
+    <div class="message" id="message"></div>
+    
+    <form class="drawer-form" id="profileForm" onsubmit="handleSubmit(event)">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="firstName">Имя</label>
+            <input 
+                type="text" 
+                id="firstName" 
+                name="first_name" 
+                placeholder="Введите имя"
+                value="{% if member %}{{ member.first_name }}{% elif user.first_name %}{{ user.first_name }}{% endif %}"
+                required
+            >
+        </div>
+        
+        <div class="form-group">
+            <label for="lastName">Фамилия</label>
+            <input 
+                type="text" 
+                id="lastName" 
+                name="last_name" 
+                placeholder="Введите фамилию"
+                value="{% if member %}{{ member.last_name }}{% elif user.last_name %}{{ user.last_name }}{% endif %}"
+                required
+            >
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="Введите email"
+                value="{% if member.email %}{{ member.email }}{% elif user.email %}{{ user.email }}{% endif %}"
+                required
+            >
+        </div>
+        
+        <div class="drawer-actions">
+            <button type="button" class="btn btn-secondary" onclick="closeDrawer()">Отмена</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Сохранить</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const drawer = document.getElementById('drawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const messageDiv = document.getElementById('message');
+    const form = document.getElementById('profileForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function openDrawer() {
+        drawer.classList.add('active');
+        drawerOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+        drawer.classList.remove('active');
+        drawerOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        messageDiv.classList.remove('success', 'error');
+        messageDiv.textContent = '';
+        messageDiv.style.display = 'none';
+    }
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        
+        const formData = new FormData(form);
+        const data = {
+            first_name: formData.get('first_name'),
+            last_name: formData.get('last_name'),
+            email: formData.get('email'),
+        };
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Сохранение...';
+
+        try {
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value || getCookie('csrftoken');
+            
+            const response = await fetch('{% url "update_profile" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                messageDiv.className = 'message success';
+                messageDiv.textContent = result.message || 'Профиль успешно обновлен!';
+                messageDiv.style.display = 'block';
+                
+                // Update display name on page
+                const userNameElement = document.querySelector('.user-name');
+                if (userNameElement && result.data) {
+                    const fullName = `${result.data.first_name} ${result.data.last_name}`.trim();
+                    if (fullName) {
+                        userNameElement.textContent = fullName;
+                    }
+                }
+                
+                // Close drawer after 2 seconds
+                setTimeout(() => {
+                    closeDrawer();
+                    // Reload page to show updated data
+                    window.location.reload();
+                }, 2000);
+            } else {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = result.error || 'Ошибка при обновлении профиля';
+                messageDiv.style.display = 'block';
+            }
+        } catch (error) {
+            messageDiv.className = 'message error';
+            messageDiv.textContent = 'Ошибка соединения. Попробуйте еще раз.';
+            messageDiv.style.display = 'block';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Сохранить';
+        }
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Close drawer on Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && drawer.classList.contains('active')) {
+            closeDrawer();
+        }
+    });
+</script>
 </body>
 </html>
 

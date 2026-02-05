@@ -1,7 +1,10 @@
 from django.contrib.auth import authenticate, login, get_user_model
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import ensure_csrf_cookie
+import json
 from .models import Member
 
 
@@ -44,6 +47,7 @@ def login_view(request):
                 # Создаём нового пользователя и базовую запись в Member
                 user = User.objects.create_user(username=username, password=password)
                 Member.objects.create(
+                    user=user,
                     first_name=username,
                     last_name="",
                     phone=None,
@@ -169,8 +173,17 @@ def profile_view(request):
     """
 
     user = request.user
+    member = None
     if user.is_authenticated:
-        display_name = user.get_full_name() or user.get_username() or "User"
+        try:
+            member = Member.objects.get(user=user)
+        except Member.DoesNotExist:
+            member = None
+        
+        if member:
+            display_name = f"{member.first_name} {member.last_name}".strip() or user.get_username() or "User"
+        else:
+            display_name = user.get_full_name() or user.get_username() or "User"
         user_id = f"id:{user.id:06d}"
     else:
         display_name = "Guest"
@@ -199,8 +212,61 @@ def profile_view(request):
             "user_id": user_id,
             "xp_percent": xp_percent,
             "achievements": achievements,
+            "member": member,
+            "user": user,
         },
     )
+
+
+@require_http_methods(["POST"])
+@ensure_csrf_cookie
+def update_profile_view(request):
+    """
+    Update user profile (first_name, last_name, email)
+    """
+    if not request.user.is_authenticated:
+        return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
+    
+    try:
+        data = json.loads(request.body)
+        first_name = data.get("first_name", "").strip()
+        last_name = data.get("last_name", "").strip()
+        email = data.get("email", "").strip()
+        
+        # Get or create Member for this user
+        member, created = Member.objects.get_or_create(
+            user=request.user,
+            defaults={
+                "first_name": first_name or request.user.username,
+                "last_name": last_name,
+                "email": email or request.user.email,
+            }
+        )
+        
+        # Update fields
+        if first_name:
+            member.first_name = first_name
+        if last_name:
+            member.last_name = last_name
+        if email:
+            member.email = email
+            # Also update User email if needed
+            request.user.email = email
+            request.user.save()
+        
+        member.save()
+        
+        return JsonResponse({
+            "success": True,
+            "message": "Profile updated successfully",
+            "data": {
+                "first_name": member.first_name,
+                "last_name": member.last_name,
+                "email": member.email or request.user.email,
+            }
+        })
+    except Exception as e:
+        return JsonResponse({"success": False, "error": str(e)}, status=400)
 
 
 def settings_view(request):
