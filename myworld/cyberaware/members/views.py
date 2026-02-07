@@ -1,11 +1,14 @@
 from django.contrib.auth import authenticate, login, get_user_model
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import ensure_csrf_cookie
 import json
-from .models import Member
+from .models import Member, Course, Lecture
 
 
 def members(request):
@@ -19,99 +22,80 @@ def members(request):
 
 def login_view(request):
     message = ""
+    next_url = request.GET.get("next") or request.POST.get("next") or "profile"
     if request.method == "POST":
-        username = request.POST.get("username", "").strip()
+        email = request.POST.get("email", "").strip().lower()
         password = request.POST.get("password", "")
 
-        if not username or not password:
-            message = "Please enter both login and password."
+        if not email or not password:
+            message = "Please enter both email and password."
         else:
-            # 1. Попытаться аутентифицировать как существующего пользователя
-            user = authenticate(request, username=username, password=password)
-
-            if user is not None:
-                login(request, user)
-                return redirect("profile")
-
-            # 2. Если пользователя нет — попробовать создать «регистрацию»
-            User = get_user_model()
             try:
-                existing = User.objects.filter(username=username).first()
-            except Exception:
-                existing = None
-
-            if existing is not None:
-                # Пользователь существует, но пароль не подходит
-                message = "Invalid login or password."
+                validate_email(email)
+            except ValidationError:
+                message = "Please enter a valid email address."
             else:
-                # Создаём нового пользователя и базовую запись в Member
-                user = User.objects.create_user(username=username, password=password)
-                Member.objects.create(
-                    user=user,
-                    first_name=username,
-                    last_name="",
-                    phone=None,
-                    joined_date=None,
-                )
-                login(request, user)
-                return redirect("profile")
+                # 1. Try to authenticate as existing user (username = email)
+                user = authenticate(request, username=email, password=password)
 
-    return render(request, "login.html", {"message": message})
+                if user is not None:
+                    login(request, user)
+                    return redirect(next_url)
+
+                # 2. If user does not exist — create new account (registration)
+                User = get_user_model()
+                existing = User.objects.filter(username=email).first()
+
+                if existing is not None:
+                    message = "Invalid email or password."
+                else:
+                    user = User.objects.create_user(username=email, email=email, password=password)
+                    Member.objects.create(
+                        user=user,
+                        first_name=email.split("@")[0],
+                        last_name="",
+                        phone=None,
+                        joined_date=None,
+                    )
+                    login(request, user)
+                    return redirect(next_url)
+
+    return render(request, "login.html", {"message": message, "next": next_url})
 
 
 def courses_view(request):
     courses = [
-        {
-            "id": "cti",
-            "title": "Cyber Threat Intelligence",
-            "description": (
-                "Learn how to collect, analyze, and use threat intelligence to predict attacks, "
-                "prioritize risks, and make better security decisions."
-            ),
-        },
-        {
-            "id": "df",
-            "title": "Digital Forensics",
-            "description": (
-                "Understand how to preserve evidence, investigate incidents, and reconstruct what "
-                "happened using logs, disk artifacts, and memory analysis."
-            ),
-        },
-        {
-            "id": "wh",
-            "title": "White Hacker",
-            "description": (
-                "Practice ethical hacking foundations: reconnaissance, common vulnerabilities, "
-                "and safe exploitation methods to improve defenses."
-            ),
-        },
-        {
-            "id": "aics",
-            "title": "AI Cyber Security",
-            "description": (
-                "Explore how AI is used in security: anomaly detection, phishing detection, "
-                "SOC automation, and the risks of adversarial ML."
-            ),
-        },
+        {"id": c.slug, "title": c.title, "description": c.description}
+        for c in Course.objects.all()
     ]
     return render(request, "courses.html", {"courses": courses})
 
 
 def course_lectures_view(request, course_id: str):
-    course_titles = {
-        "cti": "Cyber Threat Intelligence",
-        "df": "Digital Forensics",
-        "wh": "White Hacker",
-        "aics": "AI Cyber Security",
-    }
-
-    if course_id != "cti":
+    try:
+        course = Course.objects.get(slug=course_id)
+    except Course.DoesNotExist:
         return render(
             request,
             "lectures.html",
             {
                 "course_id": course_id,
-                "course_title": course_titles.get(course_id, "Course"),
+                "course_title": "Course",
+                "lectures": [],
+                "active_lecture": None,
+                "message": "Course not found.",
+                "progress_percent": 0,
+            },
+        )
+
+    lectures = list(course.lectures.all())
+    if not lectures:
+        return render(
+            request,
+            "lectures.html",
+            {
+                "course_id": course_id,
+                "course_title": course.title,
                 "lectures": [],
                 "active_lecture": None,
                 "message": "Lectures for this course are coming soon.",
@@ -119,35 +103,14 @@ def course_lectures_view(request, course_id: str):
             },
         )
 
-    lectures = [
-        {
-            "id": "l1",
-            "title": "Lecture 1",
-            "heading": "Lecture Number 1",
-            "content": "Threat intelligence basics: sources, types (strategic/operational/tactical), and the intel lifecycle.",
-        },
-        {
-            "id": "l2",
-            "title": "Lecture 2",
-            "heading": "Lecture Number 2",
-            "content": "IOC vs IOA, ATT&CK mapping, and how to turn raw indicators into actionable detections.",
-        },
-        {
-            "id": "l3",
-            "title": "Lecture 3",
-            "heading": "Lecture Number 3",
-            "content": "Threat actor profiling, TTPs, reporting structure, and communicating risk to stakeholders.",
-        },
-        {
-            "id": "l4",
-            "title": "Lecture 4",
-            "heading": "Lecture Number 4",
-            "content": "Collection & automation: feeds, enrichment, scoring, and basic TI workflows for a SOC.",
-        },
-    ]
-
-    active_id = request.GET.get("lecture") or lectures[0]["id"]
-    active_lecture = next((l for l in lectures if l["id"] == active_id), lectures[0])
+    active_id = request.GET.get("lecture")
+    if active_id:
+        try:
+            active_lecture = course.lectures.get(pk=active_id)
+        except (Lecture.DoesNotExist, ValueError):
+            active_lecture = lectures[0]
+    else:
+        active_lecture = lectures[0]
 
     completed_count = 0
     progress_percent = int((completed_count / max(len(lectures), 1)) * 100)
@@ -157,7 +120,7 @@ def course_lectures_view(request, course_id: str):
         "lectures.html",
         {
             "course_id": course_id,
-            "course_title": course_titles[course_id],
+            "course_title": course.title,
             "lectures": lectures,
             "active_lecture": active_lecture,
             "message": "",
@@ -170,7 +133,10 @@ def profile_view(request):
     """
     Simple user profile page that mirrors the layout from the mockup
     but with a cleaner, more modern visual style.
+    Requires authentication: redirects to login if user came from main/courses without registering.
     """
+    if not request.user.is_authenticated:
+        return redirect(f"{reverse('login')}?next={reverse('profile')}")
 
     user = request.user
     member = None

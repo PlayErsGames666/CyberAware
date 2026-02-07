@@ -424,7 +424,7 @@
 
         <section class="courses-list" aria-label="Courses list">
             {% for c in courses %}
-                <div class="course-card{% if c.id == 'cti' %} no-radio{% endif %}" data-description="{{ c.description|escape }}">
+                <div class="course-card no-radio" data-description="{{ c.description|escape }}">
                     <div class="course-row">
                         <input class="course-input" type="radio" name="course" id="course-{{ c.id }}" value="{{ c.id }}" {% if forloop.first %}checked{% endif %}>
                         <label class="course-label" for="course-{{ c.id }}">

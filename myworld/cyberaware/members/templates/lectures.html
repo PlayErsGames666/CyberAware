@@ -411,7 +411,7 @@
             {% if lectures %}
                 {% for l in lectures %}
                     <a class="lecture-link {% if active_lecture and active_lecture.id == l.id %}active{% endif %}"
-                       href="/courses/{{ course_id }}/?lecture={{ l.id }}">
+                       href="{% url 'course_lectures' course_id %}?lecture={{ l.id }}">
                         {{ l.title }}
                     </a>
                 {% endfor %}
@@ -464,7 +464,7 @@
             </div>
         {% else %}
             <div class="lecture-content">
-                {{ active_lecture.content|safe }}
+                {{ active_lecture.content|linebreaks }}
             </div>
         {% endif %}
 

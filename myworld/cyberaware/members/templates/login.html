@@ -305,17 +305,18 @@
 
             <form method="post">
                 {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
                 <div class="field-group">
-                    <input class="pill-input" type="text" name="username" placeholder="login" required>
+                    <input class="pill-input" type="email" name="email" placeholder="email" required autocomplete="email">
                 </div>
                 <div class="field-group">
-                    <input class="pill-input" type="password" name="password" placeholder="password" required>
+                    <input class="pill-input" type="password" name="password" placeholder="password" required autocomplete="current-password">
                 </div>
 
                 <button class="login-button" type="submit">Continue</button>
 
                 <div class="helper-row">
-                    First time here? Just choose a login and password –
+                    First time here? Enter your email and password –
                     we will create your account automatically.
                 </div>
 
