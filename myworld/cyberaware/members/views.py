@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.shortcuts import redirect, render
@@ -8,7 +9,45 @@ from django.template import loader
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import ensure_csrf_cookie
 import json
-from .models import Member, Course, Lecture
+from .models import Member, Course, Lecture, LectureQuestion, MemberLectureProgress
+
+
+def _recalculate_member_level(member: Member) -> None:
+    """
+    Update member.level based on current member.xp.
+    Level 0 starts at 0 XP.
+    1 lvl requires 100 XP, and each next level requires 1.5x more XP than the previous.
+    """
+    base_required = 100
+    total_xp = member.xp
+    level = 0
+    required_for_next = base_required
+
+    while total_xp >= required_for_next:
+        total_xp -= required_for_next
+        level += 1
+        required_for_next = int(required_for_next * 1.5)
+
+    member.level = level
+    member.save(update_fields=["level"])
+
+
+def _course_progress_percent(member: Member, course: Course) -> int:
+    """
+    Calculate user's progress in a course based on completed lectures.
+    """
+    lectures = course.lectures.all()
+    total = lectures.count()
+    if total == 0:
+        return 0
+
+    completed = MemberLectureProgress.objects.filter(
+        member=member,
+        lecture__in=lectures,
+        completed=True,
+    ).count()
+
+    return int((completed / total) * 100)
 
 
 def members(request):
@@ -112,8 +151,34 @@ def course_lectures_view(request, course_id: str):
     else:
         active_lecture = lectures[0]
 
-    completed_count = 0
-    progress_percent = int((completed_count / max(len(lectures), 1)) * 100)
+    # Calculate per-user course progress, quiz state and XP/level summary
+    member = None
+    progress_percent = 0
+    quiz_completed = False
+    member_total_xp = 0
+    member_level = 0
+
+    if request.user.is_authenticated:
+        try:
+            member = Member.objects.get(user=request.user)
+        except Member.DoesNotExist:
+            member = None
+
+    if member:
+        # Keep level in sync with current XP so lecture page and profile
+        # always show the same values.
+        _recalculate_member_level(member)
+        member_total_xp = member.xp
+        member_level = member.level
+
+        progress_percent = _course_progress_percent(member, course)
+        try:
+            lecture_progress = MemberLectureProgress.objects.get(member=member, lecture=active_lecture)
+            quiz_completed = lecture_progress.answered_correctly
+        except MemberLectureProgress.DoesNotExist:
+            quiz_completed = False
+
+    questions = active_lecture.questions.all()
 
     return render(
         request,
@@ -125,7 +190,96 @@ def course_lectures_view(request, course_id: str):
             "active_lecture": active_lecture,
             "message": "",
             "progress_percent": progress_percent,
+            "questions": questions,
+            "quiz_completed": quiz_completed,
+            "member_total_xp": member_total_xp,
+            "member_level": member_level,
         },
+    )
+
+
+@login_required
+@require_http_methods(["POST"])
+def submit_lecture_quiz_view(request, course_id: str, lecture_id: int):
+    """
+    Handle quiz submission for a lecture.
+    Awards XP if all answers are correct and the quiz for this lecture
+    was not already passed before.
+    """
+    try:
+        course = Course.objects.get(slug=course_id)
+        lecture = course.lectures.get(pk=lecture_id)
+    except (Course.DoesNotExist, Lecture.DoesNotExist):
+        return JsonResponse({"success": False, "error": "Lecture not found."}, status=404)
+
+    try:
+        member = Member.objects.get(user=request.user)
+    except Member.DoesNotExist:
+        return JsonResponse({"success": False, "error": "Profile not found."}, status=400)
+
+    questions = list(lecture.questions.all())
+    if not questions:
+        return JsonResponse({"success": False, "error": "No questions for this lecture."}, status=400)
+
+    data = request.POST or request.body
+    # Support both regular form POST (request.POST) and JSON
+    if not request.POST and request.body:
+        try:
+            payload = json.loads(request.body.decode("utf-8"))
+        except (ValueError, AttributeError):
+            payload = {}
+    else:
+        payload = request.POST
+
+    all_correct = True
+    incorrect_questions = []
+
+    for q in questions:
+        submitted = str(payload.get(f"q_{q.id}", "")).strip().upper()
+        if submitted != q.correct_option:
+            all_correct = False
+            incorrect_questions.append(q.id)
+
+    if not all_correct:
+        return JsonResponse(
+            {
+                "success": False,
+                "error": "Some answers are incorrect. Please try again.",
+                "incorrect_questions": incorrect_questions,
+            },
+            status=200,
+        )
+
+    # All answers correct – award XP once per lecture for this member
+    progress, created = MemberLectureProgress.objects.get_or_create(
+        member=member,
+        lecture=lecture,
+        defaults={"completed": False, "answered_correctly": False},
+    )
+
+    gained_xp = 0
+    # Give XP the first time the user successfully passes this lecture quiz
+    if created or not progress.answered_correctly:
+        gained_xp = 25  # XP per lecture quiz
+        member.xp += gained_xp
+        member.save(update_fields=["xp"])
+        _recalculate_member_level(member)
+
+        progress.completed = True
+        progress.answered_correctly = True
+        progress.xp_awarded += gained_xp
+        progress.save(update_fields=["completed", "answered_correctly", "xp_awarded"])
+
+    course_progress = _course_progress_percent(member, course)
+
+    return JsonResponse(
+        {
+            "success": True,
+            "gained_xp": gained_xp,
+            "total_xp": member.xp,
+            "level": member.level,
+            "course_progress": course_progress,
+        }
     )
 
 
@@ -145,7 +299,7 @@ def profile_view(request):
             member = Member.objects.get(user=user)
         except Member.DoesNotExist:
             member = None
-        
+
         if member:
             display_name = f"{member.first_name} {member.last_name}".strip() or user.get_username() or "User"
         else:
@@ -155,8 +309,35 @@ def profile_view(request):
         display_name = "Guest"
         user_id = "id:000000"
 
-    # Placeholder data – can later be replaced with real progress
-    xp_percent = 62
+    # Real XP/level data
+    current_xp = 0
+    current_level = 0
+    xp_to_next = 100
+    xp_in_current_level = 0
+    xp_required_current_level = 100
+    xp_percent = 0
+
+    if member:
+        # Ensure level is in sync with XP
+        _recalculate_member_level(member)
+        current_xp = member.xp
+        current_level = member.level
+
+        # Calculate how much XP is needed for current and next level
+        base_required = 100
+        level = 0
+        total_xp_remaining = current_xp
+        required_for_next = base_required
+
+        while total_xp_remaining >= required_for_next:
+            total_xp_remaining -= required_for_next
+            level += 1
+            required_for_next = int(required_for_next * 1.5)
+
+        xp_in_current_level = total_xp_remaining
+        xp_required_current_level = required_for_next
+        xp_to_next = max(required_for_next - total_xp_remaining, 0)
+        xp_percent = int((xp_in_current_level / max(xp_required_current_level, 1)) * 100)
     achievements = [
         {
             "title": "First Steps",
@@ -177,6 +358,11 @@ def profile_view(request):
             "display_name": display_name,
             "user_id": user_id,
             "xp_percent": xp_percent,
+            "current_xp": current_xp,
+            "current_level": current_level,
+            "xp_to_next": xp_to_next,
+            "xp_required_current_level": xp_required_current_level,
+            "xp_in_current_level": xp_in_current_level,
             "achievements": achievements,
             "member": member,
             "user": user,

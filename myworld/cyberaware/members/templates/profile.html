@@ -621,7 +621,7 @@
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
                     <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
                 </svg>
-                <span>Редактировать</span>
+                <span>Edit profile</span>
             </button>
         </div>
 
@@ -711,8 +711,13 @@
                 <div class="xp-bar-fill" style="transform: scaleX({{ xp_percent|default:0 }}/100);"></div>
             </div>
             <div class="xp-meta">
-                <span>{{ xp_percent }}% of current track</span>
-                <span class="xp-pill">CyberAware learner</span>
+                <span>
+                    Level {{ current_level|default:0 }} ·
+                    {{ xp_in_current_level|default:0 }}/{{ xp_required_current_level|default:100 }} XP to next level
+                </span>
+                <span class="xp-pill">
+                    {{ current_xp|default:0 }} XP total
+                </span>
             </div>
         </section>
 
@@ -777,7 +782,7 @@
 <!-- Drawer -->
 <div class="drawer" id="drawer">
     <div class="drawer-header">
-        <h2>Редактировать профиль</h2>
+        <h2>Edit profile</h2>
         <button class="drawer-close" onclick="closeDrawer()" aria-label="Close drawer">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -790,24 +795,24 @@
     <form class="drawer-form" id="profileForm" onsubmit="handleSubmit(event)">
         {% csrf_token %}
         <div class="form-group">
-            <label for="firstName">Имя</label>
+            <label for="firstName">First name</label>
             <input 
                 type="text" 
                 id="firstName" 
                 name="first_name" 
-                placeholder="Введите имя"
+                placeholder="Enter your first name"
                 value="{% if member %}{{ member.first_name }}{% elif user.first_name %}{{ user.first_name }}{% endif %}"
                 required
             >
         </div>
         
         <div class="form-group">
-            <label for="lastName">Фамилия</label>
+            <label for="lastName">Last name</label>
             <input 
                 type="text" 
                 id="lastName" 
                 name="last_name" 
-                placeholder="Введите фамилию"
+                placeholder="Enter your last name"
                 value="{% if member %}{{ member.last_name }}{% elif user.last_name %}{{ user.last_name }}{% endif %}"
                 required
             >
@@ -819,15 +824,15 @@
                 type="email" 
                 id="email" 
                 name="email" 
-                placeholder="Введите email"
+                placeholder="Enter your email"
                 value="{% if member.email %}{{ member.email }}{% elif user.email %}{{ user.email }}{% endif %}"
                 required
             >
         </div>
         
         <div class="drawer-actions">
-            <button type="button" class="btn btn-secondary" onclick="closeDrawer()">Отмена</button>
-            <button type="submit" class="btn btn-primary" id="submitBtn">Сохранить</button>
+            <button type="button" class="btn btn-secondary" onclick="closeDrawer()">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Save</button>
         </div>
     </form>
 </div>
@@ -865,7 +870,7 @@
         };
 
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Сохранение...';
+        submitBtn.textContent = 'Saving...';
 
         try {
             const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value || getCookie('csrftoken');
@@ -883,7 +888,7 @@
 
             if (result.success) {
                 messageDiv.className = 'message success';
-                messageDiv.textContent = result.message || 'Профиль успешно обновлен!';
+                messageDiv.textContent = result.message || 'Profile has been updated successfully!';
                 messageDiv.style.display = 'block';
                 
                 // Update display name on page
@@ -903,16 +908,16 @@
                 }, 2000);
             } else {
                 messageDiv.className = 'message error';
-                messageDiv.textContent = result.error || 'Ошибка при обновлении профиля';
+                messageDiv.textContent = result.error || 'Error while updating the profile.';
                 messageDiv.style.display = 'block';
             }
         } catch (error) {
             messageDiv.className = 'message error';
-            messageDiv.textContent = 'Ошибка соединения. Попробуйте еще раз.';
+            messageDiv.textContent = 'Connection error. Please try again.';
             messageDiv.style.display = 'block';
         } finally {
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Сохранить';
+            submitBtn.textContent = 'Save';
         }
     }
 
