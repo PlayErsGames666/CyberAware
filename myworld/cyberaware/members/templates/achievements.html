@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>CyberAware – Achievements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg-surface: #0b1220;
+            --accent: #38bdf8;
+            --accent-soft: rgba(56, 189, 248, 0.15);
+            --accent-strong: #eab308;
+            --card: #020617;
+            --card-soft: rgba(15, 23, 42, 0.9);
+            --border-subtle: rgba(148, 163, 184, 0.35);
+            --text-main: #e5e7eb;
+            --text-soft: #9ca3af;
+            --text-strong: #f9fafb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                    radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.45), transparent 55%),
+                    radial-gradient(circle at 88% 92%, rgba(59, 130, 246, 0.45), transparent 55%),
+                    linear-gradient(180deg, #020617 0%, #020617 45%, #020617 100%);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .shell {
+            width: 100%;
+            max-width: 1000px;
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 20px;
+            padding: 22px 24px 24px;
+            box-shadow:
+                    0 32px 80px rgba(15, 23, 42, 0.9),
+                    0 0 0 1px rgba(148, 163, 184, 0.35);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .page-title-block h1 {
+            font-size: 1.7rem;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+            color: var(--text-strong);
+        }
+
+        .page-title-block p {
+            margin-top: 6px;
+            font-size: 0.9rem;
+            color: var(--text-soft);
+        }
+
+        .page-badge {
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            background: var(--accent-soft);
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #e0f2fe;
+            white-space: nowrap;
+        }
+
+        .page-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #22c55e;
+        }
+
+        .categories-grid {
+            margin-top: 8px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .category-card {
+            border-radius: 16px;
+            padding: 14px 14px 12px;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(24, 35, 58, 0.96));
+            border: 1px solid var(--border-subtle);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .category-title-block {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: var(--accent-soft);
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            color: #e0f2fe;
+            flex-shrink: 0;
+        }
+
+        .category-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .category-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #a5f3fc;
+        }
+
+        .category-meta {
+            font-size: 0.75rem;
+            color: var(--text-soft);
+            white-space: nowrap;
+        }
+
+        .achievements-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .achievement-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px dashed rgba(148, 163, 184, 0.45);
+        }
+
+        .achievement-patch {
+            min-width: 34px;
+            height: 24px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(234, 179, 8, 0.7);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #facc15;
+            box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
+        }
+
+        .achievement-text-main {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-strong);
+        }
+
+        .achievement-text-sub {
+            font-size: 0.8rem;
+            color: var(--text-soft);
+        }
+
+        .achievement-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .page-footer {
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+        }
+
+        .page-footer a {
+            color: #bae6fd;
+            text-decoration: none;
+        }
+
+        .page-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 720px) {
+            .shell {
+                padding: 18px 16px 18px;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="shell">
+    <header class="page-header">
+        <div class="page-title-block">
+            <h1>Achievements</h1>
+            <p>Каталог ачивок CyberAware: посмотри, какие «нашивки» можно заработать за обучение и активность.</p>
+        </div>
+        <div class="page-badge">
+            <span class="page-badge-dot"></span>
+            <span>Прогресс измеряется привычками</span>
+        </div>
+    </header>
+
+    <section class="categories-grid" aria-label="Achievements categories">
+        {% for category in categories %}
+            <article class="category-card" id="{{ category.id }}">
+                <div class="category-header">
+                    <div class="category-title-block">
+                        <div class="category-icon">
+                            {% if category.icon == "book" %}
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M6 4h9a2 2 0 0 1 2 2v13H7a2 2 0 0 1-2-2V4Z"
+                                          stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                                    <path d="M8 7h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                                </svg>
+                            {% elif category.icon == "check" %}
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="m9.2 12.3 1.6 1.7 3.3-3.7"
+                                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                            {% elif category.icon == "shield" %}
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M12 4 6 6v6.5c0 3.1 2.1 5.9 6 7.5 3.9-1.6 6-4.4 6-7.5V6l-6-2Z"
+                                          stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                                </svg>
+                            {% elif category.icon == "flame" %}
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5S9 7 9 11c0 2.2 1.8 4 4 4a3.5 3.5 0 0 0 3.5-3.5C16.5 8 13.5 4.5 13.5 4.5Z"
+                                          stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                                    <path d="M9.5 9.5S8 11 8 13a4 4 0 0 0 4 4" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linecap="round"/>
+                                </svg>
+                            {% elif category.icon == "level" %}
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M5 17h4v3H5v-3Z" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linejoin="round"/>
+                                    <path d="M10 13h4v7h-4v-7Z" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linejoin="round"/>
+                                    <path d="M15 9h4v11h-4V9Z" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                            {% elif category.icon == "flag" %}
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M6 4v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M6 5h9l-2 4 2 4H6" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                            {% else %}
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            {% endif %}
+                        </div>
+                        <div class="category-title">{{ category.title }}</div>
+                    </div>
+                    <div class="category-meta">
+                        {{ category.items|length }} ачивок
+                    </div>
+                </div>
+
+                <div class="achievements-list">
+                    {% for a in category.items %}
+                        <div class="achievement-row">
+                            <span class="achievement-patch">
+                                {{ forloop.counter|stringformat:"02d" }}
+                            </span>
+                            <div class="achievement-text">
+                                <span class="achievement-text-main">{{ a.title }}</span>
+                                <span class="achievement-text-sub">{{ a.description }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+
+    <footer class="page-footer">
+        <span>Это справочная страница — логика получения ачивок будет добавлена позже.</span>
+        <a href="{% url 'profile' %}">← Назад в профиль</a>
+    </footer>
+</div>
+</body>
+</html>
+

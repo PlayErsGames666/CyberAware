@@ -93,3 +93,39 @@ class MemberLectureProgress(models.Model):
 
     def __str__(self):
         return f"{self.member_id} – {self.lecture_id}: {'done' if self.completed else 'pending'}"
+
+
+class MemberDailyActivity(models.Model):
+    """
+    Tracks on which days the member was active in the product.
+    Used to calculate login/returning streak achievements.
+    """
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name="daily_activity")
+    date = models.DateField()
+    last_seen = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = [["member", "date"]]
+        ordering = ["-date"]
+
+    def __str__(self):
+        return f"{self.member_id} – {self.date}"
+
+
+class MemberQuizAttempt(models.Model):
+    """
+    Stores every quiz attempt for a lecture to power
+    achievements like \"80%+\", \"с первого раза\" и т.п.
+    """
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name="quiz_attempts")
+    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, related_name="quiz_attempts")
+    created_at = models.DateTimeField(auto_now_add=True)
+    correct_count = models.PositiveIntegerField()
+    total_questions = models.PositiveIntegerField()
+    was_success = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["lecture_id", "created_at"]
+
+    def __str__(self):
+        return f"{self.member_id} – {self.lecture_id}: {self.correct_count}/{self.total_questions} ({'ok' if self.was_success else 'fail'})"

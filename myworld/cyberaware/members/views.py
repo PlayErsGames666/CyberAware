@@ -2,14 +2,254 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
+from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import ensure_csrf_cookie
+import datetime
 import json
-from .models import Member, Course, Lecture, LectureQuestion, MemberLectureProgress
+from .models import (
+    Member,
+    Course,
+    Lecture,
+    LectureQuestion,
+    MemberLectureProgress,
+    MemberDailyActivity,
+    MemberQuizAttempt,
+)
+
+ACHIEVEMENT_CATEGORIES = [
+    {
+        "id": "learning",
+        "title": "Обучение / Контент",
+        "icon": "book",
+        "items": [
+            {
+                "code": "first_step",
+                "title": "Первый шаг",
+                "description": "прочитал первую лекцию",
+                "profile_icon": "pulse",
+            },
+            {
+                "code": "start_of_journey",
+                "title": "Начало пути",
+                "description": "прошёл первый модуль целиком",
+                "profile_icon": "pulse",
+            },
+            {
+                "code": "curious",
+                "title": "Любознательный",
+                "description": "прочитал 5 лекций",
+                "profile_icon": "pulse",
+            },
+            {
+                "code": "deep_dive",
+                "title": "Погружение",
+                "description": "прочитал 10 лекций",
+                "profile_icon": "pulse",
+            },
+            {
+                "code": "to_the_end",
+                "title": "До конца",
+                "description": "дочитал лекцию до 100%",
+                "profile_icon": "pulse",
+            },
+            {
+                "code": "no_skips",
+                "title": "Без пропусков",
+                "description": "прошёл модуль без скипов",
+                "profile_icon": "pulse",
+            },
+        ],
+    },
+    {
+        "id": "tests",
+        "title": "Тесты и задания",
+        "icon": "check",
+        "items": [
+            {
+                "code": "first_quiz",
+                "title": "Проверка знаний",
+                "description": "прошёл первый тест",
+                "profile_icon": "alert",
+            },
+            {
+                "code": "no_mistakes",
+                "title": "Сдал с первого раза",
+                "description": "тест пройден без ошибок",
+                "profile_icon": "alert",
+            },
+            {
+                "code": "almost_perfect",
+                "title": "Почти идеально",
+                "description": "результат 80%+",
+                "profile_icon": "alert",
+            },
+            {
+                "code": "excellent",
+                "title": "Отличник",
+                "description": "100% за тест",
+                "profile_icon": "alert",
+            },
+            {
+                "code": "dont_give_up",
+                "title": "Не сдаюсь",
+                "description": "перепрошёл тест после ошибки",
+                "profile_icon": "alert",
+            },
+            {
+                "code": "all_quizzes",
+                "title": "Закрепил материал",
+                "description": "прошёл все тесты модуля",
+                "profile_icon": "alert",
+            },
+        ],
+    },
+    {
+        "id": "cyber",
+        "title": "Кибербезопасность (тематические)",
+        "icon": "shield",
+        "items": [
+            {
+                "code": "passwords",
+                "title": "Пароль под замком",
+                "description": "изучил тему паролей",
+                "profile_icon": "default",
+            },
+            {
+                "code": "phishing",
+                "title": "Фишинг? Не сегодня",
+                "description": "прошёл лекцию про фишинг",
+                "profile_icon": "default",
+            },
+            {
+                "code": "social_engineering",
+                "title": "Доверяй, но проверяй",
+                "description": "тема соц. инженерии",
+                "profile_icon": "default",
+            },
+            {
+                "code": "hygiene",
+                "title": "Цифровая гигиена",
+                "description": "изучил базовые правила безопасности",
+                "profile_icon": "default",
+            },
+            {
+                "code": "safe_start",
+                "title": "Безопасный старт",
+                "description": "завершил вводный курс",
+                "profile_icon": "default",
+            },
+        ],
+    },
+    {
+        "id": "activity",
+        "title": "Активность",
+        "icon": "flame",
+        "items": [
+            {
+                "code": "streak_2",
+                "title": "Возвращаюсь",
+                "description": "зашёл 2 дня подряд",
+                "profile_icon": "default",
+            },
+            {
+                "code": "streak_5",
+                "title": "Привычка",
+                "description": "5 дней подряд",
+                "profile_icon": "default",
+            },
+            {
+                "code": "streak_7",
+                "title": "Неделя с нами",
+                "description": "7 дней подряд",
+                "profile_icon": "default",
+            },
+            {
+                "code": "streak_14",
+                "title": "Постоянство",
+                "description": "14 дней подряд",
+                "profile_icon": "default",
+            },
+        ],
+    },
+    {
+        "id": "progress",
+        "title": "Прогресс",
+        "icon": "level",
+        "items": [
+            {
+                "code": "level_2",
+                "title": "Первый уровень",
+                "description": "достиг уровня 2",
+                "profile_icon": "default",
+            },
+            {
+                "code": "level_5",
+                "title": "Расту",
+                "description": "достиг уровня 5",
+                "profile_icon": "default",
+            },
+            {
+                "code": "xp_100",
+                "title": "Опыт имеет значение",
+                "description": "100 XP",
+                "profile_icon": "default",
+            },
+            {
+                "code": "xp_500",
+                "title": "На опыте",
+                "description": "500 XP",
+                "profile_icon": "default",
+            },
+            {
+                "code": "xp_1000",
+                "title": "Ветеран обучения",
+                "description": "1000 XP",
+                "profile_icon": "default",
+            },
+        ],
+    },
+    {
+        "id": "completion",
+        "title": "Завершение",
+        "icon": "flag",
+        "items": [
+            {
+                "code": "finish_course",
+                "title": "Финиш",
+                "description": "завершил курс",
+                "profile_icon": "default",
+            },
+            {
+                "code": "all_modules",
+                "title": "Осознанный пользователь",
+                "description": "прошёл все модули",
+                "profile_icon": "default",
+            },
+            {
+                "code": "cyberaware",
+                "title": "CyberAware",
+                "description": "открыл все базовые темы",
+                "profile_icon": "default",
+            },
+        ],
+    },
+]
+
+ACHIEVEMENT_BY_CODE = {}
+for category in ACHIEVEMENT_CATEGORIES:
+    for item in category["items"]:
+        ACHIEVEMENT_BY_CODE[item["code"]] = {
+            **item,
+            "category_id": category["id"],
+            "category_title": category["title"],
+            "category_icon": category["icon"],
+        }
 
 
 def _recalculate_member_level(member: Member) -> None:
@@ -48,6 +288,245 @@ def _course_progress_percent(member: Member, course: Course) -> int:
     ).count()
 
     return int((completed / total) * 100)
+
+
+def _track_daily_activity(member: Member) -> None:
+    """
+    Mark that member was active today (used for streak achievements).
+    """
+    if not member:
+        return
+    today = timezone.localdate()
+    MemberDailyActivity.objects.get_or_create(member=member, date=today)
+
+
+def _calculate_login_streak(member: Member) -> int:
+    """
+    Calculate how many consecutive days (including today, if active)
+    the user has visited the platform.
+    """
+    entries = list(MemberDailyActivity.objects.filter(member=member).order_by("-date"))
+    if not entries:
+        return 0
+
+    streak = 1
+    previous_date = entries[0].date
+    for entry in entries[1:]:
+        # Skip duplicates for the same day if any
+        if entry.date == previous_date:
+            continue
+        if previous_date - entry.date == datetime.timedelta(days=1):
+            streak += 1
+            previous_date = entry.date
+        else:
+            break
+    return streak
+
+
+def _evaluate_member_achievements(member: Member):
+    """
+    Evaluate all achievements for the given member based on:
+    - lecture progress
+    - quiz attempts / results
+    - XP / level
+    - daily activity streak
+    """
+    if not member:
+        return []
+
+    earned_codes = set()
+
+    # Progress / XP basics
+    total_xp = member.xp
+    level = member.level
+
+    lecture_progress_qs = MemberLectureProgress.objects.filter(member=member)
+    total_completed_lectures = lecture_progress_qs.filter(completed=True).count()
+
+    courses = list(Course.objects.all())
+    any_course_50 = False
+    any_course_100 = False
+    all_courses_100 = bool(courses)
+    any_course_all_quizzes = False
+
+    for course in courses:
+        progress = _course_progress_percent(member, course)
+        if progress >= 50:
+            any_course_50 = True
+        if progress == 100:
+            any_course_100 = True
+        else:
+            all_courses_100 = False
+
+        lectures = list(course.lectures.all())
+        if lectures:
+            completed_in_course = lecture_progress_qs.filter(
+                lecture__in=lectures, answered_correctly=True
+            ).count()
+            if completed_in_course == len(lectures):
+                any_course_all_quizzes = True
+
+    # Quiz attempts
+    quiz_attempts = MemberQuizAttempt.objects.filter(member=member).order_by(
+        "lecture_id", "created_at"
+    )
+
+    any_success_attempt = False
+    any_100_attempt = False
+    any_80_attempt = False
+    has_first_try_perfect = False
+    passed_after_fail = False
+
+    attempts_by_lecture = {}
+    for attempt in quiz_attempts:
+        attempts_by_lecture.setdefault(attempt.lecture_id, []).append(attempt)
+
+    for lecture_id, attempts in attempts_by_lecture.items():
+        attempts_sorted = sorted(attempts, key=lambda a: a.created_at)
+        seen_fail = False
+        for att in attempts_sorted:
+            # Common stats for both success and fail
+            if att.total_questions:
+                percent = (att.correct_count / att.total_questions) * 100
+                if percent >= 80:
+                    any_80_attempt = True
+            if att.was_success:
+                any_success_attempt = True
+                if att.total_questions and att.correct_count == att.total_questions:
+                    any_100_attempt = True
+                if not seen_fail and att.total_questions and att.correct_count == att.total_questions:
+                    has_first_try_perfect = True
+                if seen_fail:
+                    passed_after_fail = True
+                break
+            else:
+                seen_fail = True
+
+    # Daily activity / streaks
+    streak_days = _calculate_login_streak(member)
+
+    # --- Map conditions to achievement codes ---
+    # Learning / content
+    if total_completed_lectures >= 1:
+        earned_codes.add("first_step")
+        earned_codes.add("to_the_end")
+    if any_course_50:
+        earned_codes.add("start_of_journey")
+    if total_completed_lectures >= 5:
+        earned_codes.add("curious")
+    if total_completed_lectures >= 10:
+        earned_codes.add("deep_dive")
+    if any_course_100:
+        earned_codes.add("no_skips")
+
+    # Tests & quizzes
+    if any_success_attempt:
+        earned_codes.add("first_quiz")
+    if has_first_try_perfect:
+        earned_codes.add("no_mistakes")
+    if any_80_attempt:
+        earned_codes.add("almost_perfect")
+    if any_100_attempt:
+        earned_codes.add("excellent")
+    if passed_after_fail:
+        earned_codes.add("dont_give_up")
+    if any_course_all_quizzes:
+        earned_codes.add("all_quizzes")
+
+    # Thematic cyber achievements – based on lecture topics
+    # These rely on naming conventions in lecture titles/headings.
+    password_lectures = Lecture.objects.filter(
+        Q(title__icontains="парол") | Q(heading__icontains="парол") | Q(title__icontains="password")
+    )
+    if password_lectures.exists():
+        if lecture_progress_qs.filter(lecture__in=password_lectures, completed=True).exists():
+            earned_codes.add("passwords")
+
+    phishing_lectures = Lecture.objects.filter(
+        Q(title__icontains="фишинг")
+        | Q(heading__icontains="фишинг")
+        | Q(title__icontains="phishing")
+        | Q(heading__icontains="phishing")
+    )
+    if phishing_lectures.exists():
+        if lecture_progress_qs.filter(lecture__in=phishing_lectures, completed=True).exists():
+            earned_codes.add("phishing")
+
+    social_lectures = Lecture.objects.filter(
+        Q(title__icontains="соц. инженер")
+        | Q(title__icontains="социальная инженер")
+        | Q(title__icontains="social engineering")
+        | Q(heading__icontains="social engineering")
+    )
+    if social_lectures.exists():
+        if lecture_progress_qs.filter(lecture__in=social_lectures, completed=True).exists():
+            earned_codes.add("social_engineering")
+
+    hygiene_lectures = Lecture.objects.filter(
+        Q(title__icontains="цифровая гигиена")
+        | Q(heading__icontains="цифровая гигиена")
+        | Q(title__icontains="digital hygiene")
+        | Q(heading__icontains="digital hygiene")
+    )
+    if hygiene_lectures.exists():
+        if lecture_progress_qs.filter(lecture__in=hygiene_lectures, completed=True).exists():
+            earned_codes.add("hygiene")
+
+    intro_course = Course.objects.filter(
+        Q(slug__in=["intro", "start", "basics"])
+        | Q(title__icontains="вводн")
+        | Q(title__icontains="intro")
+        | Q(title__icontains="основы")
+    ).first()
+    if intro_course and _course_progress_percent(member, intro_course) == 100:
+        earned_codes.add("safe_start")
+
+    # Activity / streak
+    if streak_days >= 2:
+        earned_codes.add("streak_2")
+    if streak_days >= 5:
+        earned_codes.add("streak_5")
+    if streak_days >= 7:
+        earned_codes.add("streak_7")
+    if streak_days >= 14:
+        earned_codes.add("streak_14")
+
+    # Progress: levels & XP
+    if level >= 2:
+        earned_codes.add("level_2")
+    if level >= 5:
+        earned_codes.add("level_5")
+    if total_xp >= 100:
+        earned_codes.add("xp_100")
+    if total_xp >= 500:
+        earned_codes.add("xp_500")
+    if total_xp >= 1000:
+        earned_codes.add("xp_1000")
+
+    # Completion
+    if any_course_100:
+        earned_codes.add("finish_course")
+    if all_courses_100 and courses:
+        earned_codes.add("all_modules")
+        earned_codes.add("cyberaware")
+
+    # Convert codes to rich objects for templates
+    earned = []
+    for code in sorted(earned_codes):
+        meta = ACHIEVEMENT_BY_CODE.get(code)
+        if not meta:
+            continue
+        earned.append(
+            {
+                "code": code,
+                "title": meta["title"],
+                "subtitle": meta["description"],
+                "icon": meta.get("profile_icon", "default"),
+                "category_id": meta["category_id"],
+                "category_title": meta["category_title"],
+            }
+        )
+    return earned
 
 
 def members(request):
@@ -338,19 +817,6 @@ def profile_view(request):
         xp_required_current_level = required_for_next
         xp_to_next = max(required_for_next - total_xp_remaining, 0)
         xp_percent = int((xp_in_current_level / max(xp_required_current_level, 1)) * 100)
-    achievements = [
-        {
-            "title": "First Steps",
-            "subtitle": "Completed your first lecture",
-            "icon": "pulse",
-        },
-        {
-            "title": "Risk Watcher",
-            "subtitle": "Reviewed basic cyber risks",
-            "icon": "alert",
-        },
-    ]
-
     return render(
         request,
         "profile.html",
@@ -363,7 +829,6 @@ def profile_view(request):
             "xp_to_next": xp_to_next,
             "xp_required_current_level": xp_required_current_level,
             "xp_in_current_level": xp_in_current_level,
-            "achievements": achievements,
             "member": member,
             "user": user,
         },
@@ -427,3 +892,85 @@ def settings_view(request):
     template. Behaviour is a static prototype for now.
     """
     return render(request, "settings.html")
+
+
+def achievements_view(request):
+    """
+    Static Achievements page that groups all badges into categories.
+    This is a catalogue of what can be earned in CyberAware.
+    """
+    categories = [
+        {
+            "id": "learning",
+            "title": "Обучение / Контент",
+            "icon": "book",
+            "items": [
+                {"code": "first_step", "title": "Первый шаг", "description": "прочитал первую лекцию"},
+                {"code": "start_of_journey", "title": "Начало пути", "description": "прошёл первый модуль целиком"},
+                {"code": "curious", "title": "Любознательный", "description": "прочитал 5 лекций"},
+                {"code": "deep_dive", "title": "Погружение", "description": "прочитал 10 лекций"},
+                {"code": "to_the_end", "title": "До конца", "description": "дочитал лекцию до 100%"},
+                {"code": "no_skips", "title": "Без пропусков", "description": "прошёл модуль без скипов"},
+            ],
+        },
+        {
+            "id": "tests",
+            "title": "Тесты и задания",
+            "icon": "check",
+            "items": [
+                {"code": "first_quiz", "title": "Проверка знаний", "description": "прошёл первый тест"},
+                {"code": "no_mistakes", "title": "Сдал с первого раза", "description": "тест пройден без ошибок"},
+                {"code": "almost_perfect", "title": "Почти идеально", "description": "результат 80%+"},
+                {"code": "excellent", "title": "Отличник", "description": "100% за тест"},
+                {"code": "dont_give_up", "title": "Не сдаюсь", "description": "перепрошёл тест после ошибки"},
+                {"code": "all_quizzes", "title": "Закрепил материал", "description": "прошёл все тесты модуля"},
+            ],
+        },
+        {
+            "id": "cyber",
+            "title": "Кибербезопасность (тематические)",
+            "icon": "shield",
+            "items": [
+                {"code": "passwords", "title": "Пароль под замком", "description": "изучил тему паролей"},
+                {"code": "phishing", "title": "Фишинг? Не сегодня", "description": "прошёл лекцию про фишинг"},
+                {"code": "social_engineering", "title": "Доверяй, но проверяй", "description": "тема соц. инженерии"},
+                {"code": "hygiene", "title": "Цифровая гигиена", "description": "изучил базовые правила безопасности"},
+                {"code": "safe_start", "title": "Безопасный старт", "description": "завершил вводный курс"},
+            ],
+        },
+        {
+            "id": "activity",
+            "title": "Активность",
+            "icon": "flame",
+            "items": [
+                {"code": "streak_2", "title": "Возвращаюсь", "description": "зашёл 2 дня подряд"},
+                {"code": "streak_5", "title": "Привычка", "description": "5 дней подряд"},
+                {"code": "streak_7", "title": "Неделя с нами", "description": "7 дней подряд"},
+                {"code": "streak_14", "title": "Постоянство", "description": "14 дней подряд"},
+            ],
+        },
+        {
+            "id": "progress",
+            "title": "Прогресс",
+            "icon": "level",
+            "items": [
+                {"code": "level_2", "title": "Первый уровень", "description": "достиг уровня 2"},
+                {"code": "level_5", "title": "Расту", "description": "достиг уровня 5"},
+                {"code": "xp_100", "title": "Опыт имеет значение", "description": "100 XP"},
+                {"code": "xp_500", "title": "На опыте", "description": "500 XP"},
+                {"code": "xp_1000", "title": "Ветеран обучения", "description": "1000 XP"},
+            ],
+        },
+        {
+            "id": "completion",
+            "title": "Завершение",
+            "icon": "flag",
+            "items": [
+                {"code": "finish_course", "title": "Финиш", "description": "завершил курс"},
+                {"code": "all_modules", "title": "Осознанный пользователь", "description": "прошёл все модули"},
+                {"code": "cyberaware", "title": "CyberAware", "description": "открыл все базовые темы"},
+            ],
+        },
+    ]
+
+    return render(request, "achievements.html", {"categories": categories})

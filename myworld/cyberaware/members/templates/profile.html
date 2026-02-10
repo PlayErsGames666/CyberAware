@@ -666,7 +666,7 @@
                 <span>Planned</span>
             </a>
 
-            <a href="#achievements" class="nav-button">
+            <a href="{% url 'achievements' %}" class="nav-button">
                 <span>
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M12 4 4 9.5 12 20l8-10.5L12 4Z" stroke="currentColor" stroke-width="1.4"
@@ -719,54 +719,6 @@
                     {{ current_xp|default:0 }} XP total
                 </span>
             </div>
-        </section>
-
-        <header class="achievements-header" id="achievements">
-            <h2>Achievements</h2>
-            <span>Small wins that build strong habits</span>
-        </header>
-
-        <section class="achievements-card" aria-label="Achievements list">
-            {% for a in achievements %}
-                <article class="achievement">
-                    <div class="achievement-icon">
-                        {% if a.icon == "pulse" %}
-                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path d="M3 13h4l1.4-3.5L11 16l2-6 1.6 3H21" stroke="currentColor"
-                                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        {% elif a.icon == "alert" %}
-                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path d="M12 4 4 19h16L12 4Z" stroke="currentColor" stroke-width="1.5"
-                                      stroke-linejoin="round"/>
-                                <path d="M12 10v4.4" stroke="currentColor" stroke-width="1.5"
-                                      stroke-linecap="round"/>
-                                <circle cx="12" cy="17.2" r="0.9" fill="currentColor"/>
-                            </svg>
-                        {% else %}
-                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.5"/>
-                                <path d="M12 9v4" stroke="currentColor" stroke-width="1.5"
-                                      stroke-linecap="round"/>
-                                <circle cx="12" cy="16" r="0.9" fill="currentColor"/>
-                            </svg>
-                        {% endif %}
-                    </div>
-                    <div class="achievement-body">
-                        <div class="achievement-title">{{ a.title }}</div>
-                        <div class="achievement-subtitle">{{ a.subtitle }}</div>
-                    </div>
-                </article>
-            {% empty %}
-                <article class="achievement">
-                    <div class="achievement-body">
-                        <div class="achievement-title">No achievements yet</div>
-                        <div class="achievement-subtitle">
-                            Start a course to unlock your first milestone.
-                        </div>
-                    </div>
-                </article>
-            {% endfor %}
         </section>
 
         <div class="footer-row">

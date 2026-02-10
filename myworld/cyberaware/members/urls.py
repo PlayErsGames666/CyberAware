@@ -14,6 +14,7 @@ urlpatterns = [
     path("profile/", views.profile_view, name="profile"),
     path("profile/update/", views.update_profile_view, name="update_profile"),
     path("settings/", views.settings_view, name="settings"),
+    path("achievements/", views.achievements_view, name="achievements"),
 ]
 
 
