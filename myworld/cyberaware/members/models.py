@@ -129,3 +129,19 @@ class MemberQuizAttempt(models.Model):
 
     def __str__(self):
         return f"{self.member_id} – {self.lecture_id}: {self.correct_count}/{self.total_questions} ({'ok' if self.was_success else 'fail'})"
+
+
+class MemberAchievement(models.Model):
+    """
+    Stores achievements earned by members.
+    """
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name="achievements")
+    code = models.CharField(max_length=50, help_text="Achievement code (e.g., 'first_step', 'level_2')")
+    earned_at = models.DateTimeField(auto_now_add=True, help_text="When the achievement was earned")
+
+    class Meta:
+        unique_together = [["member", "code"]]
+        ordering = ["-earned_at"]
+
+    def __str__(self):
+        return f"{self.member_id} – {self.code}"
