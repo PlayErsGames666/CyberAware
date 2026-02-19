@@ -20,221 +20,222 @@ from .models import (
     MemberLectureProgress,
     MemberDailyActivity,
     MemberQuizAttempt,
+    MemberAchievement,
 )
 
 ACHIEVEMENT_CATEGORIES = [
     {
         "id": "learning",
-        "title": "Обучение / Контент",
+        "title": "Learning / Content",
         "icon": "book",
         "items": [
             {
                 "code": "first_step",
-                "title": "Первый шаг",
-                "description": "прочитал первую лекцию",
+                "title": "First Step",
+                "description": "completed first lecture",
                 "profile_icon": "pulse",
             },
             {
                 "code": "start_of_journey",
-                "title": "Начало пути",
-                "description": "прошёл первый модуль целиком",
+                "title": "Start of Journey",
+                "description": "completed first module entirely",
                 "profile_icon": "pulse",
             },
             {
                 "code": "curious",
-                "title": "Любознательный",
-                "description": "прочитал 5 лекций",
+                "title": "Curious Learner",
+                "description": "completed 5 lectures",
                 "profile_icon": "pulse",
             },
             {
                 "code": "deep_dive",
-                "title": "Погружение",
-                "description": "прочитал 10 лекций",
+                "title": "Deep Dive",
+                "description": "completed 10 lectures",
                 "profile_icon": "pulse",
             },
             {
                 "code": "to_the_end",
-                "title": "До конца",
-                "description": "дочитал лекцию до 100%",
+                "title": "To the End",
+                "description": "finished lecture to 100%",
                 "profile_icon": "pulse",
             },
             {
                 "code": "no_skips",
-                "title": "Без пропусков",
-                "description": "прошёл модуль без скипов",
+                "title": "No Skips",
+                "description": "completed module without skipping",
                 "profile_icon": "pulse",
             },
         ],
     },
     {
         "id": "tests",
-        "title": "Тесты и задания",
+        "title": "Tests & Assignments",
         "icon": "check",
         "items": [
             {
                 "code": "first_quiz",
-                "title": "Проверка знаний",
-                "description": "прошёл первый тест",
+                "title": "Knowledge Check",
+                "description": "passed first test",
                 "profile_icon": "alert",
             },
             {
                 "code": "no_mistakes",
-                "title": "Сдал с первого раза",
-                "description": "тест пройден без ошибок",
+                "title": "First Try Success",
+                "description": "test passed without errors",
                 "profile_icon": "alert",
             },
             {
                 "code": "almost_perfect",
-                "title": "Почти идеально",
-                "description": "результат 80%+",
+                "title": "Almost Perfect",
+                "description": "80%+ score",
                 "profile_icon": "alert",
             },
             {
                 "code": "excellent",
-                "title": "Отличник",
-                "description": "100% за тест",
+                "title": "Excellent",
+                "description": "100% on test",
                 "profile_icon": "alert",
             },
             {
                 "code": "dont_give_up",
-                "title": "Не сдаюсь",
-                "description": "перепрошёл тест после ошибки",
+                "title": "Never Give Up",
+                "description": "retook test after failure",
                 "profile_icon": "alert",
             },
             {
                 "code": "all_quizzes",
-                "title": "Закрепил материал",
-                "description": "прошёл все тесты модуля",
+                "title": "Material Mastered",
+                "description": "passed all module tests",
                 "profile_icon": "alert",
             },
         ],
     },
     {
         "id": "cyber",
-        "title": "Кибербезопасность (тематические)",
+        "title": "Cybersecurity (Thematic)",
         "icon": "shield",
         "items": [
             {
                 "code": "passwords",
-                "title": "Пароль под замком",
-                "description": "изучил тему паролей",
+                "title": "Password Protected",
+                "description": "studied password security",
                 "profile_icon": "default",
             },
             {
                 "code": "phishing",
-                "title": "Фишинг? Не сегодня",
-                "description": "прошёл лекцию про фишинг",
+                "title": "Phishing? Not Today",
+                "description": "completed phishing lecture",
                 "profile_icon": "default",
             },
             {
                 "code": "social_engineering",
-                "title": "Доверяй, но проверяй",
-                "description": "тема соц. инженерии",
+                "title": "Trust but Verify",
+                "description": "social engineering topic",
                 "profile_icon": "default",
             },
             {
                 "code": "hygiene",
-                "title": "Цифровая гигиена",
-                "description": "изучил базовые правила безопасности",
+                "title": "Digital Hygiene",
+                "description": "learned basic security rules",
                 "profile_icon": "default",
             },
             {
                 "code": "safe_start",
-                "title": "Безопасный старт",
-                "description": "завершил вводный курс",
+                "title": "Safe Start",
+                "description": "completed introductory course",
                 "profile_icon": "default",
             },
         ],
     },
     {
         "id": "activity",
-        "title": "Активность",
+        "title": "Activity",
         "icon": "flame",
         "items": [
             {
                 "code": "streak_2",
-                "title": "Возвращаюсь",
-                "description": "зашёл 2 дня подряд",
+                "title": "Coming Back",
+                "description": "logged in 2 days in a row",
                 "profile_icon": "default",
             },
             {
                 "code": "streak_5",
-                "title": "Привычка",
-                "description": "5 дней подряд",
+                "title": "Building Habits",
+                "description": "5 days in a row",
                 "profile_icon": "default",
             },
             {
                 "code": "streak_7",
-                "title": "Неделя с нами",
-                "description": "7 дней подряд",
+                "title": "Week with Us",
+                "description": "7 days in a row",
                 "profile_icon": "default",
             },
             {
                 "code": "streak_14",
-                "title": "Постоянство",
-                "description": "14 дней подряд",
+                "title": "Consistency",
+                "description": "14 days in a row",
                 "profile_icon": "default",
             },
         ],
     },
     {
         "id": "progress",
-        "title": "Прогресс",
+        "title": "Progress",
         "icon": "level",
         "items": [
             {
                 "code": "level_2",
-                "title": "Первый уровень",
-                "description": "достиг уровня 2",
+                "title": "Level Up",
+                "description": "reached level 2",
                 "profile_icon": "default",
             },
             {
                 "code": "level_5",
-                "title": "Расту",
-                "description": "достиг уровня 5",
+                "title": "Growing Strong",
+                "description": "reached level 5",
                 "profile_icon": "default",
             },
             {
                 "code": "xp_100",
-                "title": "Опыт имеет значение",
-                "description": "100 XP",
+                "title": "Experience Matters",
+                "description": "earned 100 XP",
                 "profile_icon": "default",
             },
             {
                 "code": "xp_500",
-                "title": "На опыте",
-                "description": "500 XP",
+                "title": "Experienced",
+                "description": "earned 500 XP",
                 "profile_icon": "default",
             },
             {
                 "code": "xp_1000",
-                "title": "Ветеран обучения",
-                "description": "1000 XP",
+                "title": "Learning Veteran",
+                "description": "earned 1000 XP",
                 "profile_icon": "default",
             },
         ],
     },
     {
         "id": "completion",
-        "title": "Завершение",
+        "title": "Completion",
         "icon": "flag",
         "items": [
             {
                 "code": "finish_course",
-                "title": "Финиш",
-                "description": "завершил курс",
+                "title": "Course Complete",
+                "description": "finished course",
                 "profile_icon": "default",
             },
             {
                 "code": "all_modules",
-                "title": "Осознанный пользователь",
-                "description": "прошёл все модули",
+                "title": "Informed User",
+                "description": "completed all modules",
                 "profile_icon": "default",
             },
             {
                 "code": "cyberaware",
                 "title": "CyberAware",
-                "description": "открыл все базовые темы",
+                "description": "unlocked all basic topics",
                 "profile_icon": "default",
             },
         ],
@@ -330,9 +331,16 @@ def _evaluate_member_achievements(member: Member):
     - quiz attempts / results
     - XP / level
     - daily activity streak
+
+    This function also saves new achievements to the database.
     """
     if not member:
         return []
+
+    # Get existing achievements for this member
+    existing_achievements = set(
+        MemberAchievement.objects.filter(member=member).values_list('code', flat=True)
+    )
 
     earned_codes = set()
 
@@ -436,37 +444,37 @@ def _evaluate_member_achievements(member: Member):
     # Thematic cyber achievements – based on lecture topics
     # These rely on naming conventions in lecture titles/headings.
     password_lectures = Lecture.objects.filter(
-        Q(title__icontains="парол") | Q(heading__icontains="парол") | Q(title__icontains="password")
+        Q(title__icontains="password") | Q(heading__icontains="password") | Q(title__icontains="парол")
     )
     if password_lectures.exists():
         if lecture_progress_qs.filter(lecture__in=password_lectures, completed=True).exists():
             earned_codes.add("passwords")
 
     phishing_lectures = Lecture.objects.filter(
-        Q(title__icontains="фишинг")
-        | Q(heading__icontains="фишинг")
-        | Q(title__icontains="phishing")
+        Q(title__icontains="phishing")
         | Q(heading__icontains="phishing")
+        | Q(title__icontains="фишинг")
+        | Q(heading__icontains="фишинг")
     )
     if phishing_lectures.exists():
         if lecture_progress_qs.filter(lecture__in=phishing_lectures, completed=True).exists():
             earned_codes.add("phishing")
 
     social_lectures = Lecture.objects.filter(
-        Q(title__icontains="соц. инженер")
-        | Q(title__icontains="социальная инженер")
-        | Q(title__icontains="social engineering")
+        Q(title__icontains="social engineering")
         | Q(heading__icontains="social engineering")
+        | Q(title__icontains="соц. инженер")
+        | Q(title__icontains="социальная инженер")
     )
     if social_lectures.exists():
         if lecture_progress_qs.filter(lecture__in=social_lectures, completed=True).exists():
             earned_codes.add("social_engineering")
 
     hygiene_lectures = Lecture.objects.filter(
-        Q(title__icontains="цифровая гигиена")
-        | Q(heading__icontains="цифровая гигиена")
-        | Q(title__icontains="digital hygiene")
+        Q(title__icontains="digital hygiene")
         | Q(heading__icontains="digital hygiene")
+        | Q(title__icontains="цифровая гигиена")
+        | Q(heading__icontains="цифровая гигиена")
     )
     if hygiene_lectures.exists():
         if lecture_progress_qs.filter(lecture__in=hygiene_lectures, completed=True).exists():
@@ -474,8 +482,9 @@ def _evaluate_member_achievements(member: Member):
 
     intro_course = Course.objects.filter(
         Q(slug__in=["intro", "start", "basics"])
-        | Q(title__icontains="вводн")
         | Q(title__icontains="intro")
+        | Q(title__icontains="basic")
+        | Q(title__icontains="вводн")
         | Q(title__icontains="основы")
     ).first()
     if intro_course and _course_progress_percent(member, intro_course) == 100:
@@ -509,6 +518,11 @@ def _evaluate_member_achievements(member: Member):
     if all_courses_100 and courses:
         earned_codes.add("all_modules")
         earned_codes.add("cyberaware")
+
+    # Save new achievements to database
+    new_achievements = earned_codes - existing_achievements
+    for code in new_achievements:
+        MemberAchievement.objects.create(member=member, code=code)
 
     # Convert codes to rich objects for templates
     earned = []
@@ -558,6 +572,12 @@ def login_view(request):
 
                 if user is not None:
                     login(request, user)
+                    # Track daily activity for existing users
+                    try:
+                        member = Member.objects.get(user=user)
+                        _track_daily_activity(member)
+                    except Member.DoesNotExist:
+                        pass
                     return redirect(next_url)
 
                 # 2. If user does not exist — create new account (registration)
@@ -568,7 +588,7 @@ def login_view(request):
                     message = "Invalid email or password."
                 else:
                     user = User.objects.create_user(username=email, email=email, password=password)
-                    Member.objects.create(
+                    member = Member.objects.create(
                         user=user,
                         first_name=email.split("@")[0],
                         last_name="",
@@ -576,6 +596,8 @@ def login_view(request):
                         joined_date=None,
                     )
                     login(request, user)
+                    # Track daily activity for new users
+                    _track_daily_activity(member)
                     return redirect(next_url)
 
     return render(request, "login.html", {"message": message, "next": next_url})
@@ -712,12 +734,24 @@ def submit_lecture_quiz_view(request, course_id: str, lecture_id: int):
 
     all_correct = True
     incorrect_questions = []
+    correct_count = 0
 
     for q in questions:
         submitted = str(payload.get(f"q_{q.id}", "")).strip().upper()
-        if submitted != q.correct_option:
+        if submitted == q.correct_option:
+            correct_count += 1
+        else:
             all_correct = False
             incorrect_questions.append(q.id)
+
+    # Track this quiz attempt
+    MemberQuizAttempt.objects.create(
+        member=member,
+        lecture=lecture,
+        correct_count=correct_count,
+        total_questions=len(questions),
+        was_success=all_correct
+    )
 
     if not all_correct:
         return JsonResponse(
@@ -748,6 +782,12 @@ def submit_lecture_quiz_view(request, course_id: str, lecture_id: int):
         progress.answered_correctly = True
         progress.xp_awarded += gained_xp
         progress.save(update_fields=["completed", "answered_correctly", "xp_awarded"])
+
+    # Track daily activity
+    _track_daily_activity(member)
+
+    # Update achievements after successful quiz completion
+    _evaluate_member_achievements(member)
 
     course_progress = _course_progress_percent(member, course)
 
@@ -796,6 +836,8 @@ def profile_view(request):
     xp_required_current_level = 100
     xp_percent = 0
 
+    # Get user achievements
+    user_achievements = []
     if member:
         # Ensure level is in sync with XP
         _recalculate_member_level(member)
@@ -817,6 +859,15 @@ def profile_view(request):
         xp_required_current_level = required_for_next
         xp_to_next = max(required_for_next - total_xp_remaining, 0)
         xp_percent = int((xp_in_current_level / max(xp_required_current_level, 1)) * 100)
+
+        # Evaluate and get user achievements
+        user_achievements = _evaluate_member_achievements(member)
+
+        # Create formatted XP progress text
+        xp_progress_text = f"Level {current_level} · {xp_in_current_level}/{xp_required_current_level} XP to next level"
+    else:
+        xp_progress_text = "Level 0 · 0/100 XP to next level"
+
     return render(
         request,
         "profile.html",
@@ -829,8 +880,10 @@ def profile_view(request):
             "xp_to_next": xp_to_next,
             "xp_required_current_level": xp_required_current_level,
             "xp_in_current_level": xp_in_current_level,
+            "xp_progress_text": xp_progress_text,
             "member": member,
             "user": user,
+            "achievements": user_achievements,
         },
     )
 
@@ -843,13 +896,13 @@ def update_profile_view(request):
     """
     if not request.user.is_authenticated:
         return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
-    
+
     try:
         data = json.loads(request.body)
         first_name = data.get("first_name", "").strip()
         last_name = data.get("last_name", "").strip()
         email = data.get("email", "").strip()
-        
+
         # Get or create Member for this user
         member, created = Member.objects.get_or_create(
             user=request.user,
@@ -859,7 +912,7 @@ def update_profile_view(request):
                 "email": email or request.user.email,
             }
         )
-        
+
         # Update fields
         if first_name:
             member.first_name = first_name
@@ -870,9 +923,9 @@ def update_profile_view(request):
             # Also update User email if needed
             request.user.email = email
             request.user.save()
-        
+
         member.save()
-        
+
         return JsonResponse({
             "success": True,
             "message": "Profile updated successfully",
