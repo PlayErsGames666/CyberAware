@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 User = get_user_model()
 
@@ -145,3 +146,67 @@ class MemberAchievement(models.Model):
 
     def __str__(self):
         return f"{self.member_id} – {self.code}"
+
+
+class UserSettings(models.Model):
+    """
+    Stores per-user preferences: appearance, notifications, privacy, security flags.
+    Created automatically on first access via get_or_create.
+    """
+    THEME_CHOICES = [("dark", "Dark"), ("light", "Light"), ("system", "System")]
+    FONT_CHOICES = [("small", "Small"), ("medium", "Medium"), ("large", "Large")]
+    VISIBILITY_CHOICES = [
+        ("everyone", "Everyone"),
+        ("registered", "Registered users"),
+        ("only_me", "Only me"),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_settings")
+
+    # Appearance
+    theme = models.CharField(max_length=10, choices=THEME_CHOICES, default="dark")
+    accent_color = models.CharField(max_length=7, default="#38bdf8")
+    compact_mode = models.BooleanField(default=False)
+    font_size = models.CharField(max_length=10, choices=FONT_CHOICES, default="medium")
+    animations_enabled = models.BooleanField(default=True)
+
+    # Notifications
+    notify_course_updates = models.BooleanField(default=True)
+    notify_new_lectures = models.BooleanField(default=True)
+    notify_email = models.BooleanField(default=True)
+    notify_in_app = models.BooleanField(default=True)
+    notify_telegram = models.BooleanField(default=False)
+
+    # Privacy
+    profile_visibility = models.CharField(max_length=20, choices=VISIBILITY_CHOICES, default="everyone")
+    analytics_tracking = models.BooleanField(default=True)
+
+    # Security
+    two_factor_enabled = models.BooleanField(default=False)
+    two_factor_secret = models.CharField(max_length=64, blank=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Settings for {self.user}"
+
+
+class LoginHistory(models.Model):
+    """
+    Records every login event: IP address, device/browser, rough location,
+    session key (to allow targeted logout) and whether the session is still active.
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="login_history")
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    device = models.CharField(max_length=255, blank=True, default="Unknown device")
+    location = models.CharField(max_length=255, blank=True, default="Unknown location")
+    session_key = models.CharField(max_length=40, blank=True, db_index=True)
+    logged_in_at = models.DateTimeField(default=timezone.now)
+    is_active = models.BooleanField(default=True)
+    logged_out_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-logged_in_at"]
+
+    def __str__(self):
+        return f"{self.user} – {self.ip_address} – {'active' if self.is_active else 'ended'}"
