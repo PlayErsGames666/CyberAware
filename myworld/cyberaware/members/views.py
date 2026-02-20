@@ -12,6 +12,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import ensure_csrf_cookie
 import datetime
 import json
+import re
 from .models import (
     Member,
     Course,
@@ -21,6 +22,8 @@ from .models import (
     MemberDailyActivity,
     MemberQuizAttempt,
     MemberAchievement,
+    UserSettings,
+    LoginHistory,
 )
 
 ACHIEVEMENT_CATEGORIES = [
@@ -552,6 +555,70 @@ def members(request):
     return HttpResponse(template.render(context, request))
 
 
+# ─── Helpers for login tracking ──────────────────────────────────────────────
+
+def _get_client_ip(request):
+    """Return the best-guess real IP for the request."""
+    xff = request.META.get("HTTP_X_FORWARDED_FOR")
+    if xff:
+        return xff.split(",")[0].strip()
+    return request.META.get("REMOTE_ADDR")
+
+
+def _parse_device(request):
+    """Return a short human-readable device / browser string from User-Agent."""
+    ua = request.META.get("HTTP_USER_AGENT", "")
+    if not ua:
+        return "Unknown device"
+
+    # OS detection
+    if "Windows NT 10" in ua:
+        os_name = "Windows 10"
+    elif "Windows NT 11" in ua or "Windows NT 10.0; Win64" in ua:
+        os_name = "Windows"
+    elif "Macintosh" in ua or "Mac OS X" in ua:
+        os_name = "macOS"
+    elif "iPhone" in ua:
+        os_name = "iPhone"
+    elif "iPad" in ua:
+        os_name = "iPad"
+    elif "Android" in ua:
+        os_name = "Android"
+    elif "Linux" in ua:
+        os_name = "Linux"
+    else:
+        os_name = "Unknown OS"
+
+    # Browser detection
+    if "Edg/" in ua or "Edge/" in ua:
+        browser = "Edge"
+    elif "OPR/" in ua or "Opera" in ua:
+        browser = "Opera"
+    elif "Chrome/" in ua:
+        browser = "Chrome"
+    elif "Firefox/" in ua:
+        browser = "Firefox"
+    elif "Safari/" in ua:
+        browser = "Safari"
+    else:
+        browser = "Browser"
+
+    return f"{browser} on {os_name}"
+
+
+def _record_login(request, user):
+    """Create a LoginHistory entry for this login event."""
+    # Mark previous active sessions as inactive first (optional – keep them as-is so
+    # the user can see them; we only set is_active=False when they explicitly log out)
+    LoginHistory.objects.create(
+        user=user,
+        ip_address=_get_client_ip(request),
+        device=_parse_device(request),
+        location="Unknown location",
+        session_key=request.session.session_key or "",
+    )
+
+
 def login_view(request):
     message = ""
     next_url = request.GET.get("next") or request.POST.get("next") or "profile"
@@ -578,16 +645,17 @@ def login_view(request):
                         _track_daily_activity(member)
                     except Member.DoesNotExist:
                         pass
+                    _record_login(request, user)
                     return redirect(next_url)
 
                 # 2. If user does not exist — create new account (registration)
-                User = get_user_model()
-                existing = User.objects.filter(username=email).first()
+                UserModel = get_user_model()
+                existing = UserModel.objects.filter(username=email).first()
 
                 if existing is not None:
                     message = "Invalid email or password."
                 else:
-                    user = User.objects.create_user(username=email, email=email, password=password)
+                    user = UserModel.objects.create_user(username=email, email=email, password=password)
                     member = Member.objects.create(
                         user=user,
                         first_name=email.split("@")[0],
@@ -598,6 +666,7 @@ def login_view(request):
                     login(request, user)
                     # Track daily activity for new users
                     _track_daily_activity(member)
+                    _record_login(request, user)
                     return redirect(next_url)
 
     return render(request, "login.html", {"message": message, "next": next_url})
@@ -941,10 +1010,309 @@ def update_profile_view(request):
 
 def settings_view(request):
     """
-    Simple settings page that uses the standalone settings.html
-    template. Behaviour is a static prototype for now.
+    Full settings page: loads UserSettings, LoginHistory, and renders settings.html.
     """
-    return render(request, "settings.html")
+    if not request.user.is_authenticated:
+        return redirect("login")
+
+    user_settings, _ = UserSettings.objects.get_or_create(user=request.user)
+    login_history = LoginHistory.objects.filter(user=request.user).order_by("-logged_in_at")[:20]
+    active_sessions = LoginHistory.objects.filter(user=request.user, is_active=True).order_by("-logged_in_at")
+
+    context = {
+        "user_settings": user_settings,
+        "login_history": login_history,
+        "active_sessions": active_sessions,
+        "current_session_key": request.session.session_key or "",
+    }
+    return render(request, "settings.html", context)
+
+
+@require_http_methods(["POST"])
+def change_password_view(request):
+    """AJAX endpoint: change the logged-in user's password."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
+
+    try:
+        data = json.loads(request.body)
+    except (json.JSONDecodeError, ValueError):
+        data = request.POST
+
+    current_password = data.get("current_password", "")
+    new_password = data.get("new_password", "")
+    confirm_password = data.get("confirm_password", "")
+
+    if not current_password or not new_password or not confirm_password:
+        return JsonResponse({"success": False, "error": "All fields are required."}, status=400)
+
+    if new_password != confirm_password:
+        return JsonResponse({"success": False, "error": "New passwords do not match."}, status=400)
+
+    if len(new_password) < 8:
+        return JsonResponse({"success": False, "error": "Password must be at least 8 characters."}, status=400)
+
+    from django.contrib.auth import update_session_auth_hash
+    user = request.user
+    if not user.check_password(current_password):
+        return JsonResponse({"success": False, "error": "Current password is incorrect."}, status=400)
+
+    user.set_password(new_password)
+    user.save()
+    update_session_auth_hash(request, user)
+    return JsonResponse({"success": True, "message": "Password changed successfully."})
+
+
+@require_http_methods(["POST"])
+def logout_all_devices_view(request):
+    """Invalidate every session except the current one, mark LoginHistory inactive."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
+
+    current_key = request.session.session_key
+
+    # Flush all stored sessions for this user via the session engine
+    from django.contrib.sessions.models import Session
+    from django.utils import timezone as tz
+    all_sessions = Session.objects.filter(expire_date__gte=tz.now())
+    for session in all_sessions:
+        try:
+            data = session.get_decoded()
+            uid = data.get("_auth_user_id")
+            if uid and int(uid) == request.user.pk and session.session_key != current_key:
+                session.delete()
+        except Exception:
+            pass
+
+    # Mark all other LoginHistory entries as inactive
+    LoginHistory.objects.filter(
+        user=request.user, is_active=True
+    ).exclude(session_key=current_key).update(
+        is_active=False,
+        logged_out_at=timezone.now()
+    )
+
+    return JsonResponse({"success": True, "message": "Logged out from all other devices."})
+
+
+@require_http_methods(["POST"])
+def logout_session_view(request):
+    """Log out a single session by session_key."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
+
+    try:
+        data = json.loads(request.body)
+    except (json.JSONDecodeError, ValueError):
+        data = request.POST
+
+    session_key = data.get("session_key", "")
+    if not session_key:
+        return JsonResponse({"success": False, "error": "session_key required"}, status=400)
+
+    if session_key == request.session.session_key:
+        return JsonResponse({"success": False, "error": "Cannot log out current session here."}, status=400)
+
+    from django.contrib.sessions.models import Session
+    Session.objects.filter(session_key=session_key).delete()
+    LoginHistory.objects.filter(
+        user=request.user, session_key=session_key
+    ).update(is_active=False, logged_out_at=timezone.now())
+
+    return JsonResponse({"success": True, "message": "Session terminated."})
+
+
+@require_http_methods(["POST"])
+def toggle_2fa_view(request):
+    """Toggle two-factor authentication for the user."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
+
+    user_settings, _ = UserSettings.objects.get_or_create(user=request.user)
+    user_settings.two_factor_enabled = not user_settings.two_factor_enabled
+    user_settings.save()
+
+    state = "enabled" if user_settings.two_factor_enabled else "disabled"
+    return JsonResponse({
+        "success": True,
+        "enabled": user_settings.two_factor_enabled,
+        "message": f"Two-factor authentication {state}."
+    })
+
+
+@require_http_methods(["POST"])
+def save_notifications_view(request):
+    """Save notification preferences."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
+
+    try:
+        data = json.loads(request.body)
+    except (json.JSONDecodeError, ValueError):
+        data = request.POST
+
+    user_settings, _ = UserSettings.objects.get_or_create(user=request.user)
+    user_settings.notify_course_updates = bool(data.get("notify_course_updates", False))
+    user_settings.notify_new_lectures = bool(data.get("notify_new_lectures", False))
+    user_settings.notify_email = bool(data.get("notify_email", False))
+    user_settings.notify_in_app = bool(data.get("notify_in_app", False))
+    user_settings.notify_telegram = bool(data.get("notify_telegram", False))
+    user_settings.save()
+
+    return JsonResponse({"success": True, "message": "Notification preferences saved."})
+
+
+@require_http_methods(["POST"])
+def save_appearance_view(request):
+    """Save appearance / UI preferences."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
+
+    try:
+        data = json.loads(request.body)
+    except (json.JSONDecodeError, ValueError):
+        data = request.POST
+
+    user_settings, _ = UserSettings.objects.get_or_create(user=request.user)
+
+    theme = data.get("theme", "dark")
+    if theme in ("dark", "light", "system"):
+        user_settings.theme = theme
+
+    accent = data.get("accent_color", "#38bdf8")
+    if re.match(r"^#[0-9a-fA-F]{6}$", accent):
+        user_settings.accent_color = accent
+
+    font_size = data.get("font_size", "medium")
+    if font_size in ("small", "medium", "large"):
+        user_settings.font_size = font_size
+
+    user_settings.compact_mode = bool(data.get("compact_mode", False))
+    user_settings.animations_enabled = bool(data.get("animations_enabled", True))
+    user_settings.save()
+
+    return JsonResponse({"success": True, "message": "Appearance settings saved.", "settings": {
+        "theme": user_settings.theme,
+        "accent_color": user_settings.accent_color,
+        "font_size": user_settings.font_size,
+        "compact_mode": user_settings.compact_mode,
+        "animations_enabled": user_settings.animations_enabled,
+    }})
+
+
+@require_http_methods(["POST"])
+def save_privacy_view(request):
+    """Save privacy preferences."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
+
+    try:
+        data = json.loads(request.body)
+    except (json.JSONDecodeError, ValueError):
+        data = request.POST
+
+    user_settings, _ = UserSettings.objects.get_or_create(user=request.user)
+
+    visibility = data.get("profile_visibility", "everyone")
+    if visibility in ("everyone", "registered", "only_me"):
+        user_settings.profile_visibility = visibility
+
+    user_settings.analytics_tracking = bool(data.get("analytics_tracking", True))
+    user_settings.save()
+
+    return JsonResponse({"success": True, "message": "Privacy settings saved."})
+
+
+@require_http_methods(["GET"])
+def export_data_view(request):
+    """Export all user data as a JSON download."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
+
+    import json as json_lib
+
+    user = request.user
+    try:
+        member = Member.objects.get(user=user)
+    except Member.DoesNotExist:
+        member = None
+
+    user_settings, _ = UserSettings.objects.get_or_create(user=user)
+
+    data = {
+        "account": {
+            "username": user.username,
+            "email": user.email,
+            "date_joined": str(user.date_joined),
+        },
+        "profile": {
+            "first_name": member.first_name if member else "",
+            "last_name": member.last_name if member else "",
+            "xp": member.xp if member else 0,
+            "level": member.level if member else 0,
+        } if member else {},
+        "settings": {
+            "theme": user_settings.theme,
+            "accent_color": user_settings.accent_color,
+            "compact_mode": user_settings.compact_mode,
+            "font_size": user_settings.font_size,
+            "animations_enabled": user_settings.animations_enabled,
+            "notify_course_updates": user_settings.notify_course_updates,
+            "notify_new_lectures": user_settings.notify_new_lectures,
+            "notify_email": user_settings.notify_email,
+            "notify_in_app": user_settings.notify_in_app,
+            "notify_telegram": user_settings.notify_telegram,
+            "profile_visibility": user_settings.profile_visibility,
+            "analytics_tracking": user_settings.analytics_tracking,
+        },
+        "login_history": [
+            {
+                "ip": str(lh.ip_address),
+                "device": lh.device,
+                "location": lh.location,
+                "logged_in_at": str(lh.logged_in_at),
+                "is_active": lh.is_active,
+            }
+            for lh in LoginHistory.objects.filter(user=user).order_by("-logged_in_at")[:50]
+        ],
+        "achievements": [
+            {"code": a.code, "earned_at": str(a.earned_at)}
+            for a in MemberAchievement.objects.filter(member=member)
+        ] if member else [],
+    }
+
+    response = HttpResponse(
+        json_lib.dumps(data, indent=2, ensure_ascii=False),
+        content_type="application/json",
+    )
+    response["Content-Disposition"] = f'attachment; filename="cyberaware_data_{user.username}.json"'
+    return response
+
+
+@require_http_methods(["POST"])
+def delete_account_view(request):
+    """Permanently delete the user account after password confirmation."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"success": False, "error": "Not authenticated"}, status=401)
+
+    try:
+        data = json.loads(request.body)
+    except (json.JSONDecodeError, ValueError):
+        data = request.POST
+
+    password = data.get("password", "")
+    if not password:
+        return JsonResponse({"success": False, "error": "Password is required to delete your account."}, status=400)
+
+    if not request.user.check_password(password):
+        return JsonResponse({"success": False, "error": "Incorrect password."}, status=400)
+
+    from django.contrib.auth import logout as auth_logout
+    user = request.user
+    auth_logout(request)
+    user.delete()
+
+    return JsonResponse({"success": True, "message": "Account deleted. Goodbye.", "redirect": "/"})
 
 
 def achievements_view(request):
