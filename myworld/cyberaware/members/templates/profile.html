@@ -670,7 +670,8 @@
             <aside class="sidebar">
                 <div class="profile-header">
                     <div class="avatar">
-                        {% if display_name %}{{ display_name|first|upper }}{% else %}U{% endif %}</div>
+                        {% if display_name %}{{ display_name|first|upper }}{% else %}U{% endif %}
+                    </div>
                     <div class="user-meta">
                         <div class="user-name">{{ display_name }}</div>
                         <div class="user-id">{{ user_id }}</div>
@@ -723,37 +724,6 @@
                             <span>Courses</span>
                         </span>
                         <span>Go to catalog</span>
-                    </a>
-
-                    <a href="#" class="nav-button" aria-disabled="true">
-                        <span>
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    d="M6 4h8.5a2.5 2.5 0 0 1 2.5 2.5V20"
-                                    stroke="currentColor"
-                                    stroke-width="1.4"
-                                    stroke-linecap="round"
-                                />
-                                <path
-                                    d="M6 8.5h7"
-                                    stroke="currentColor"
-                                    stroke-width="1.4"
-                                    stroke-linecap="round"
-                                />
-                                <path
-                                    d="M6 12h5"
-                                    stroke="currentColor"
-                                    stroke-width="1.4"
-                                    stroke-linecap="round"
-                                />
-                            </svg>
-                            <span>Lectures</span>
-                        </span>
-                        <span>Soon</span>
                     </a>
 
                     <a href="#" class="nav-button" aria-disabled="true">
@@ -881,9 +851,11 @@
                     class="achievements-card"
                     aria-label="User achievements"
                 >
-                    {% if achievements %} {% for achievement in achievements  %}                    <div class="achievement">
+                    {% if achievements %} {% for achievement in achievements %}
+                    <div class="achievement">
                         <div class="achievement-icon">
-                            {% if achievement.icon == "pulse"  %}                            <svg
+                            {% if achievement.icon == "pulse" %}
+                            <svg
                                 width="24"
                                 height="24"
                                 viewBox="0 0 24 24"
@@ -895,7 +867,8 @@
                                     points="22,12 18,12 15,21 9,3 6,12 2,12"
                                 ></polyline>
                             </svg>
-                            {% elif achievement.icon == "alert"  %}                            <svg
+                            {% elif achievement.icon == "alert" %}
+                            <svg
                                 width="24"
                                 height="24"
                                 viewBox="0 0 24 24"
@@ -909,7 +882,8 @@
                                 <path d="M12 9v4"></path>
                                 <path d="m12 17 .01 0"></path>
                             </svg>
-                            {% else  %}                            <svg
+                            {% else %}
+                            <svg
                                 width="24"
                                 height="24"
                                 viewBox="0 0 24 24"
@@ -920,7 +894,8 @@
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <path d="m9 12 2 2 4-4"></path>
                             </svg>
-                            {% endif  %}                        </div>
+                            {% endif %}
+                        </div>
                         <div class="achievement-body">
                             <div class="achievement-title">
                                 {{ achievement.title }}
@@ -930,7 +905,8 @@
                             </div>
                         </div>
                     </div>
-                    {% endfor %} {% else  %}                    <div class="achievement">
+                    {% endfor %} {% else %}
+                    <div class="achievement">
                         <div class="achievement-icon">
                             <svg
                                 width="24"
@@ -954,7 +930,8 @@
                             </div>
                         </div>
                     </div>
-                    {% endif  %}                </section>
+                    {% endif %}
+                </section>
 
                 <div class="footer-row">
                     <span>Profile preview – data will be enriched later.</span>
@@ -997,7 +974,8 @@
                 id="profileForm"
                 onsubmit="handleSubmit(event)"
             >
-                {% csrf_token  %}                <div class="form-group">
+                {% csrf_token %}
+                <div class="form-group">
                     <label for="firstName">First name</label>
                     <input
                         type="text"
