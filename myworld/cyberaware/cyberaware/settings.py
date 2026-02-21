@@ -75,12 +75,8 @@ WSGI_APPLICATION = 'cyberaware.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cyberaware',
-        'USER': 'cyberuser',
-        'PASSWORD': 'cyberpassword',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -121,12 +117,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# PostgreSQL: make sure you have this database and user created:
-#   - database: cyberaware
-#   - user:     cyberuser
-#   - password: cyberpassword
-#   - host:     localhost:5432
-# And install the driver:
-#   pip install psycopg[binary]
-# Then run:
-#   python manage.py migrate
+# Using SQLite for local development.
+# To switch to PostgreSQL for production, change DATABASES to:
+#   'ENGINE': 'django.db.backends.postgresql',
+#   'NAME': 'cyberaware',
+#   'USER': 'cyberuser',
+#   'PASSWORD': 'cyberpassword',
+#   'HOST': 'localhost',
+#   'PORT': '5432',
+# And install the driver: pip install psycopg[binary]
+# Then run: python manage.py migrate
