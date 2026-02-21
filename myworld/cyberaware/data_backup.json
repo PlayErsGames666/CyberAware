@@ -1,0 +1,3957 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "members",
+    "model": "member"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "members",
+    "model": "course"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "members",
+    "model": "lecture"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "members",
+    "model": "lecturequestion"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "members",
+    "model": "memberlectureprogress"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "members",
+    "model": "memberachievement"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "members",
+    "model": "memberdailyactivity"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "members",
+    "model": "memberquizattempt"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "members",
+    "model": "loginhistory"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "members",
+    "model": "usersettings"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dcgrnwakrlttt7nezgvqdgz3ijym76fo",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnx31DS5wzWeteLA8iR4qRC3B0ipYD2zcx7iQTbWtPWy5ImEhehvDj9jhnwUdpO6A7tNkuc27pMWe6KPGiX40zleT3cv4MKvX5rCGcsmY22Br1z6CMFxwjM1isNIQS2SGAiqwjZugBc9EBFw5CtySTeHypqOSU:1vpoTJ:WBrOEVPixrXPSfpAq6jO-gVR6giyGqCBcz17g29KLiI",
+    "expire_date": "2026-02-24T14:12:09.269Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ko28qyr014d6byh0sa9jw3hoygr8e1kh",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pAWBmFcuvcMZAZGqRpISrsy3l2bdKHb_977LxVpXUpcu8xxyuqkrDr8bkzpIXUD-U711nRqdZkn1puid9r1pWV5nnf376BQL9-aE6P4NAgKiWc3QnZEVoYrCBuTrHEOIDjiEYIAohEMyR3RBs-Zgnp_AAqHOEQ:1vnHel:ztfu4QcxBLtt_h3dNgibnCU77lP45O-IekCQ447SPAw",
+    "expire_date": "2026-02-17T14:45:31.587Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "t80cfwx1iyjxc0a3nv9msu5c3pxp99ka",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSG8BMal-34DGRiQqoGktCvjv2uTLnR7zzn3xQJuaw3byEuYiV2YVOz0O0ZMj9x2Qndst85Tb-syR74r_KCDT53y83q4fwcVR_3WGm2BFF0pUknrKOVCyhFpE8Gg0NKDVgCokvDSG6Rk0WcFXkTM9uzY-wMaGDg_:1vpOcY:WhLGACmK5hnW5la1YqpRJovp0il_1JaJL_6IjZQj4YY",
+    "expire_date": "2026-02-23T10:35:58.556Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "u9zskbodfvtx6yteez7s2ea838octzds",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQAP_C2RA2lAIevfsGAruLVA0kpT0Z_64kPeh1ZjIvEeK-lbB3XsNC4izAidMvTBEfXIehe6y3JrHVbV2SHIk8bJfXRvy8HO3foMRexhcQ5ilnk5gAMiDr5LxGy1M23qqsNGlDjEDoPViH33Yio7xmlWcl3h8dwDhy:1vteQe:7vyptujeOqw8gpc41hKPNBlUnVlU4_BLECf293brUDY",
+    "expire_date": "2026-03-07T04:17:16.863Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vz39g3ydth1n6cnuamo6t45vh6rq19wz",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pASygy4dO8ZyMwAUjU0Ke3KeHdt0oVu_3vvv1Skba1x63mJU1JnZdTpd2OSR247SHdqt1nL3NZlYr0r-qBdX-eUn5fD_Tuo1Ou39qYUw-JRqHAAcQmQAa13ecRSknhH3oYABUDsEGA0iA6YLWKigdX7A_gFN_8:1vndCJ:wY_qgboZT21XDHOcROQMoPUOWaZv8x0HVhXQRRfs9FQ",
+    "expire_date": "2026-02-18T13:45:35.315Z"
+  }
+},
+{
+  "model": "members.course",
+  "pk": 1,
+  "fields": {
+    "slug": "cti",
+    "title": "Cyber Threat Intelligence",
+    "description": "Learn how to collect, analyze, and use threat intelligence to predict attacks, prioritize risks, and make better security decisions."
+  }
+},
+{
+  "model": "members.course",
+  "pk": 2,
+  "fields": {
+    "slug": "df",
+    "title": "Digital Forensics",
+    "description": "Understand how to preserve evidence, investigate incidents, and reconstruct what happened using logs, disk artifacts, and memory analysis."
+  }
+},
+{
+  "model": "members.course",
+  "pk": 3,
+  "fields": {
+    "slug": "wh",
+    "title": "White Hacker",
+    "description": "Practice ethical hacking foundations: reconnaissance, common vulnerabilities, and safe exploitation methods to improve defenses."
+  }
+},
+{
+  "model": "members.course",
+  "pk": 4,
+  "fields": {
+    "slug": "aics",
+    "title": "AI Cyber Security",
+    "description": "Explore how AI is used in security: anomaly detection, phishing detection, SOC automation, and the risks of adversarial ML."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 1,
+  "fields": {
+    "course": 1,
+    "order": 1,
+    "title": "Lecture 1",
+    "heading": "Threat Intelligence Basics",
+    "content": "Threat intelligence basics: sources, types (strategic/operational/tactical), and the intel lifecycle. Understanding how TI supports decision-making and how to integrate it into security operations."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 2,
+  "fields": {
+    "course": 1,
+    "order": 2,
+    "title": "Lecture 2",
+    "heading": "IOC, IOA and ATT&CK",
+    "content": "IOC vs IOA, ATT&CK mapping, and how to turn raw indicators into actionable detections. Building detection rules and aligning them with adversary behavior."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 3,
+  "fields": {
+    "course": 1,
+    "order": 3,
+    "title": "Lecture 3",
+    "heading": "Threat Actor Profiling",
+    "content": "Threat actor profiling, TTPs, reporting structure, and communicating risk to stakeholders. Writing clear TI reports and briefing non-technical audiences."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 4,
+  "fields": {
+    "course": 1,
+    "order": 4,
+    "title": "Lecture 4",
+    "heading": "Collection and Automation",
+    "content": "Collection & automation: feeds, enrichment, scoring, and basic TI workflows for a SOC. Integrating open-source and commercial feeds into your pipeline."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 5,
+  "fields": {
+    "course": 2,
+    "order": 1,
+    "title": "Lecture 1",
+    "heading": "Introduction to Digital Forensics",
+    "content": "Introduction to digital forensics: principles of evidence, chain of custody, and legal considerations. Role of forensics in incident response and criminal investigations."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 6,
+  "fields": {
+    "course": 2,
+    "order": 2,
+    "title": "Lecture 2",
+    "heading": "Disk and File System Analysis",
+    "content": "Disk and file system analysis: imaging, recovery of deleted files, timeline analysis. Using common tools to extract artifacts from Windows and Linux systems."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 7,
+  "fields": {
+    "course": 2,
+    "order": 3,
+    "title": "Lecture 3",
+    "heading": "Memory Forensics",
+    "content": "Memory forensics: capturing RAM, analyzing processes and network connections, detecting malware and rootkits. Volatility and modern memory analysis techniques."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 8,
+  "fields": {
+    "course": 2,
+    "order": 4,
+    "title": "Lecture 4",
+    "heading": "Log Analysis and Reporting",
+    "content": "Log analysis and correlation: event logs, network logs, and building a timeline. Writing forensic reports and presenting findings in court or to management."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 9,
+  "fields": {
+    "course": 3,
+    "order": 1,
+    "title": "Lecture 1",
+    "heading": "Ethics and Reconnaissance",
+    "content": "Ethical hacking overview: scope, authorization, and legal boundaries. Passive and active reconnaissance, OSINT, and footprinting without crossing legal lines."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 10,
+  "fields": {
+    "course": 3,
+    "order": 2,
+    "title": "Lecture 2",
+    "heading": "Common Vulnerabilities",
+    "content": "Common vulnerabilities: OWASP Top 10, misconfigurations, and weak authentication. Identifying and documenting findings in a structured way."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 11,
+  "fields": {
+    "course": 3,
+    "order": 3,
+    "title": "Lecture 3",
+    "heading": "Exploitation Basics",
+    "content": "Safe exploitation basics: proof-of-concept without causing damage, using labs and CTF environments. Understanding exploit development and mitigation."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 12,
+  "fields": {
+    "course": 3,
+    "order": 4,
+    "title": "Lecture 4",
+    "heading": "Reporting and Remediation",
+    "content": "Reporting and remediation: writing clear findings, risk ratings, and working with developers to fix issues. Building a sustainable offensive security program."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 13,
+  "fields": {
+    "course": 4,
+    "order": 1,
+    "title": "Lecture 1",
+    "heading": "AI in Security Overview",
+    "content": "Artificial intelligence (AI) is increasingly being used in cybersecurity to detect, analyze, and prevent threats. Unlike traditional security systems that operate based on predefined rules, AI-based systems can learn from data, recognize anomalies, and adapt to new attacks.\r\n\r\n## How AI is used in cybersecurity?\r\n\r\n1. Threat detection\r\nAI analyzes network traffic, logs, and user behavior to identify suspicious activity, even if the attack has not been seen before (zero-day attacks).\r\n\r\n2. Behavior analysis (Behavior Analytics)\r\n Machine learning systems build a \"normal profile\" of user or device behavior and alert if the behavior deviates from the norm (for example, logging in at an unusual time or from a different country).\r\n\r\n3. Phishing and spam protection\r\nAI recognizes phishing emails by analyzing the text, links, message structure, and sender behavior, making it more effective than simple filters.\r\n\r\n4. Incident Response Automation\r\nAI can automatically block suspicious IP addresses, disable compromised accounts, and reduce the response time to attacks.\r\n\r\n5. Malware Analysis (Malware)\r\nMachine learning models analyze the behavior of files and programs, rather than just their signatures, helping to detect previously unknown viruses.\r\n\r\n## ⚠️ Limitations and risks of AI in security\r\n\r\nFalse positives — AI may mistakenly block legitimate activity\r\n\r\nData dependence — poor or incomplete data reduces effectiveness\r\n\r\nAttacks on AI models — attackers may try to deceive models (adversarial attacks)\r\n\r\nLack of transparency — it is difficult to explain why AI made a particular decision\r\n\r\n👉 Therefore, AI complements, but does not replace, cybersecurity professionals."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 14,
+  "fields": {
+    "course": 4,
+    "order": 2,
+    "title": "Lecture 2",
+    "heading": "Phishing and Malware Detection",
+    "content": "Phishing and malware detection with ML: feature extraction, model types, and real-world deployment. Handling false positives and keeping models up to date."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 15,
+  "fields": {
+    "course": 4,
+    "order": 3,
+    "title": "Lecture 3",
+    "heading": "SOC Automation and SOAR",
+    "content": "SOC automation and SOAR: using AI to triage alerts, automate playbooks, and reduce analyst fatigue. Integration with SIEM and ticketing systems."
+  }
+},
+{
+  "model": "members.lecture",
+  "pk": 16,
+  "fields": {
+    "course": 4,
+    "order": 4,
+    "title": "Lecture 4",
+    "heading": "Adversarial ML and Risks",
+    "content": "Adversarial ML and AI risks: evasion, poisoning, and model theft. Defending ML systems and understanding the limits of AI in security."
+  }
+},
+{
+  "model": "members.lecturequestion",
+  "pk": 1,
+  "fields": {
+    "lecture": 13,
+    "text": "What is the key advantage of AI systems in cybersecurity?",
+    "option_a": "They do not require updates",
+    "option_b": "They are faster than any human",
+    "option_c": "They can detect unknown threats",
+    "option_d": "They completely eliminate attacks",
+    "correct_option": "C"
+  }
+},
+{
+  "model": "members.lecturequestion",
+  "pk": 2,
+  "fields": {
+    "lecture": 13,
+    "text": "What does Behavior Analytics mean?",
+    "option_a": "Verifying user passwords",
+    "option_b": "Analysis of the appearance of websites",
+    "option_c": "Identification of deviations from normal behavior",
+    "option_d": "Encryption of user data",
+    "correct_option": "C"
+  }
+},
+{
+  "model": "members.lecturequestion",
+  "pk": 3,
+  "fields": {
+    "lecture": 13,
+    "text": "What is the difference between AI malware analysis and signature-based malware analysis?",
+    "option_a": "AI only uses antivirus databases",
+    "option_b": "AI analyzes behavior, not just known patterns",
+    "option_c": "AI only works manually",
+    "option_d": "There is no difference",
+    "correct_option": "B"
+  }
+},
+{
+  "model": "members.lecturequestion",
+  "pk": 4,
+  "fields": {
+    "lecture": 13,
+    "text": "What is the risk associated with using AI in cybersecurity?",
+    "option_a": "No automation at all",
+    "option_b": "No scalability",
+    "option_c": "False positives and errors",
+    "option_d": "No internet",
+    "correct_option": "C"
+  }
+},
+{
+  "model": "members.lecturequestion",
+  "pk": 5,
+  "fields": {
+    "lecture": 13,
+    "text": "What role does AI play in incident response?",
+    "option_a": "Only notifies the administrator",
+    "option_b": "Can automatically take protective measures",
+    "option_c": "Only used for employee training",
+    "option_d": "Only works offline",
+    "correct_option": "B"
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 1,
+  "fields": {
+    "member": 10,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 0
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 2,
+  "fields": {
+    "member": 11,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 0
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 3,
+  "fields": {
+    "member": 12,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 0
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 4,
+  "fields": {
+    "member": 13,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 5,
+  "fields": {
+    "member": 14,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 6,
+  "fields": {
+    "member": 16,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 7,
+  "fields": {
+    "member": 17,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 8,
+  "fields": {
+    "member": 18,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 9,
+  "fields": {
+    "member": 18,
+    "lecture": 14,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 10,
+  "fields": {
+    "member": 18,
+    "lecture": 15,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 11,
+  "fields": {
+    "member": 18,
+    "lecture": 16,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 12,
+  "fields": {
+    "member": 18,
+    "lecture": 1,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 13,
+  "fields": {
+    "member": 18,
+    "lecture": 2,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 14,
+  "fields": {
+    "member": 18,
+    "lecture": 3,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 15,
+  "fields": {
+    "member": 18,
+    "lecture": 4,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 16,
+  "fields": {
+    "member": 18,
+    "lecture": 5,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 17,
+  "fields": {
+    "member": 18,
+    "lecture": 6,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 18,
+  "fields": {
+    "member": 18,
+    "lecture": 7,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 19,
+  "fields": {
+    "member": 18,
+    "lecture": 8,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 20,
+  "fields": {
+    "member": 18,
+    "lecture": 9,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 21,
+  "fields": {
+    "member": 18,
+    "lecture": 10,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 22,
+  "fields": {
+    "member": 18,
+    "lecture": 11,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 23,
+  "fields": {
+    "member": 18,
+    "lecture": 12,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 24,
+  "fields": {
+    "member": 19,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 25,
+  "fields": {
+    "member": 20,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 26,
+  "fields": {
+    "member": 22,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 27,
+  "fields": {
+    "member": 23,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 28,
+  "fields": {
+    "member": 24,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 29,
+  "fields": {
+    "member": 24,
+    "lecture": 14,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 30,
+  "fields": {
+    "member": 24,
+    "lecture": 15,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 31,
+  "fields": {
+    "member": 24,
+    "lecture": 16,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 32,
+  "fields": {
+    "member": 24,
+    "lecture": 1,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 33,
+  "fields": {
+    "member": 24,
+    "lecture": 2,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 34,
+  "fields": {
+    "member": 24,
+    "lecture": 3,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 35,
+  "fields": {
+    "member": 24,
+    "lecture": 4,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 36,
+  "fields": {
+    "member": 24,
+    "lecture": 5,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 37,
+  "fields": {
+    "member": 24,
+    "lecture": 6,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 38,
+  "fields": {
+    "member": 24,
+    "lecture": 7,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 39,
+  "fields": {
+    "member": 24,
+    "lecture": 8,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 40,
+  "fields": {
+    "member": 24,
+    "lecture": 9,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 41,
+  "fields": {
+    "member": 24,
+    "lecture": 10,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 42,
+  "fields": {
+    "member": 24,
+    "lecture": 11,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 43,
+  "fields": {
+    "member": 24,
+    "lecture": 12,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 44,
+  "fields": {
+    "member": 26,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberlectureprogress",
+  "pk": 45,
+  "fields": {
+    "member": 28,
+    "lecture": 13,
+    "completed": true,
+    "answered_correctly": true,
+    "xp_awarded": 25
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 1,
+  "fields": {
+    "member": 17,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T12:46:59.417Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 2,
+  "fields": {
+    "member": 18,
+    "date": "2026-01-29",
+    "last_seen": "2026-02-18T12:48:11.380Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 3,
+  "fields": {
+    "member": 18,
+    "date": "2026-01-30",
+    "last_seen": "2026-02-18T12:48:11.382Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 4,
+  "fields": {
+    "member": 18,
+    "date": "2026-01-31",
+    "last_seen": "2026-02-18T12:48:11.383Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 5,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-01",
+    "last_seen": "2026-02-18T12:48:11.385Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 6,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-02",
+    "last_seen": "2026-02-18T12:48:11.386Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 7,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-03",
+    "last_seen": "2026-02-18T12:48:11.388Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 8,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-04",
+    "last_seen": "2026-02-18T12:48:11.389Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 9,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-05",
+    "last_seen": "2026-02-18T12:48:11.391Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 10,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-06",
+    "last_seen": "2026-02-18T12:48:11.393Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 11,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-07",
+    "last_seen": "2026-02-18T12:48:11.394Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 12,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-08",
+    "last_seen": "2026-02-18T12:48:11.395Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 13,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-09",
+    "last_seen": "2026-02-18T12:48:11.397Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 14,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-10",
+    "last_seen": "2026-02-18T12:48:11.398Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 15,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-11",
+    "last_seen": "2026-02-18T12:48:11.399Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 16,
+  "fields": {
+    "member": 18,
+    "date": "2026-02-12",
+    "last_seen": "2026-02-18T12:48:11.401Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 17,
+  "fields": {
+    "member": 16,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T12:54:22.075Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 18,
+  "fields": {
+    "member": 19,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T12:59:01.415Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 19,
+  "fields": {
+    "member": 20,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T13:01:36.063Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 20,
+  "fields": {
+    "member": 21,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T13:02:01.731Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 21,
+  "fields": {
+    "member": 22,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T13:03:18.297Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 22,
+  "fields": {
+    "member": 23,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T13:08:25.487Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 23,
+  "fields": {
+    "member": 24,
+    "date": "2026-01-29",
+    "last_seen": "2026-02-18T13:08:39.935Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 24,
+  "fields": {
+    "member": 24,
+    "date": "2026-01-30",
+    "last_seen": "2026-02-18T13:08:39.937Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 25,
+  "fields": {
+    "member": 24,
+    "date": "2026-01-31",
+    "last_seen": "2026-02-18T13:08:39.939Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 26,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-01",
+    "last_seen": "2026-02-18T13:08:39.940Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 27,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-02",
+    "last_seen": "2026-02-18T13:08:39.942Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 28,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-03",
+    "last_seen": "2026-02-18T13:08:39.943Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 29,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-04",
+    "last_seen": "2026-02-18T13:08:39.945Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 30,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-05",
+    "last_seen": "2026-02-18T13:08:39.947Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 31,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-06",
+    "last_seen": "2026-02-18T13:08:39.949Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 32,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-07",
+    "last_seen": "2026-02-18T13:08:39.950Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 33,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-08",
+    "last_seen": "2026-02-18T13:08:39.951Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 34,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-09",
+    "last_seen": "2026-02-18T13:08:39.952Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 35,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-10",
+    "last_seen": "2026-02-18T13:08:39.954Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 36,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-11",
+    "last_seen": "2026-02-18T13:08:39.955Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 37,
+  "fields": {
+    "member": 24,
+    "date": "2026-02-12",
+    "last_seen": "2026-02-18T13:08:39.957Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 38,
+  "fields": {
+    "member": 25,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T13:10:35.745Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 39,
+  "fields": {
+    "member": 26,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T13:12:22.213Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 40,
+  "fields": {
+    "member": 27,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T13:13:56.678Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 41,
+  "fields": {
+    "member": 28,
+    "date": "2026-02-18",
+    "last_seen": "2026-02-18T13:15:25.963Z"
+  }
+},
+{
+  "model": "members.memberdailyactivity",
+  "pk": 42,
+  "fields": {
+    "member": 16,
+    "date": "2026-02-20",
+    "last_seen": "2026-02-20T12:55:56.949Z"
+  }
+},
+{
+  "model": "members.memberquizattempt",
+  "pk": 1,
+  "fields": {
+    "member": 17,
+    "lecture": 13,
+    "created_at": "2026-02-18T12:46:59.435Z",
+    "correct_count": 5,
+    "total_questions": 5,
+    "was_success": true
+  }
+},
+{
+  "model": "members.memberquizattempt",
+  "pk": 2,
+  "fields": {
+    "member": 18,
+    "lecture": 13,
+    "created_at": "2026-02-18T12:48:11.416Z",
+    "correct_count": 5,
+    "total_questions": 5,
+    "was_success": true
+  }
+},
+{
+  "model": "members.memberquizattempt",
+  "pk": 3,
+  "fields": {
+    "member": 19,
+    "lecture": 13,
+    "created_at": "2026-02-18T12:59:01.431Z",
+    "correct_count": 5,
+    "total_questions": 5,
+    "was_success": true
+  }
+},
+{
+  "model": "members.memberquizattempt",
+  "pk": 4,
+  "fields": {
+    "member": 20,
+    "lecture": 13,
+    "created_at": "2026-02-18T13:01:36.078Z",
+    "correct_count": 5,
+    "total_questions": 5,
+    "was_success": true
+  }
+},
+{
+  "model": "members.memberquizattempt",
+  "pk": 5,
+  "fields": {
+    "member": 22,
+    "lecture": 13,
+    "created_at": "2026-02-18T13:03:32.438Z",
+    "correct_count": 5,
+    "total_questions": 5,
+    "was_success": true
+  }
+},
+{
+  "model": "members.memberquizattempt",
+  "pk": 6,
+  "fields": {
+    "member": 23,
+    "lecture": 13,
+    "created_at": "2026-02-18T13:08:25.503Z",
+    "correct_count": 5,
+    "total_questions": 5,
+    "was_success": true
+  }
+},
+{
+  "model": "members.memberquizattempt",
+  "pk": 7,
+  "fields": {
+    "member": 24,
+    "lecture": 13,
+    "created_at": "2026-02-18T13:08:39.971Z",
+    "correct_count": 5,
+    "total_questions": 5,
+    "was_success": true
+  }
+},
+{
+  "model": "members.memberquizattempt",
+  "pk": 8,
+  "fields": {
+    "member": 26,
+    "lecture": 13,
+    "created_at": "2026-02-18T13:12:42.565Z",
+    "correct_count": 5,
+    "total_questions": 5,
+    "was_success": true
+  }
+},
+{
+  "model": "members.memberquizattempt",
+  "pk": 9,
+  "fields": {
+    "member": 28,
+    "lecture": 13,
+    "created_at": "2026-02-18T13:15:25.979Z",
+    "correct_count": 5,
+    "total_questions": 5,
+    "was_success": true
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 1,
+  "fields": {
+    "member": 17,
+    "code": "first_quiz",
+    "earned_at": "2026-02-18T12:46:59.466Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 2,
+  "fields": {
+    "member": 17,
+    "code": "almost_perfect",
+    "earned_at": "2026-02-18T12:46:59.467Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 3,
+  "fields": {
+    "member": 17,
+    "code": "no_mistakes",
+    "earned_at": "2026-02-18T12:46:59.468Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 4,
+  "fields": {
+    "member": 17,
+    "code": "excellent",
+    "earned_at": "2026-02-18T12:46:59.468Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 5,
+  "fields": {
+    "member": 17,
+    "code": "first_step",
+    "earned_at": "2026-02-18T12:46:59.468Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 6,
+  "fields": {
+    "member": 17,
+    "code": "to_the_end",
+    "earned_at": "2026-02-18T12:46:59.469Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 7,
+  "fields": {
+    "member": 18,
+    "code": "first_quiz",
+    "earned_at": "2026-02-18T12:48:11.481Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 8,
+  "fields": {
+    "member": 18,
+    "code": "start_of_journey",
+    "earned_at": "2026-02-18T12:48:11.481Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 9,
+  "fields": {
+    "member": 18,
+    "code": "streak_5",
+    "earned_at": "2026-02-18T12:48:11.482Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 10,
+  "fields": {
+    "member": 18,
+    "code": "finish_course",
+    "earned_at": "2026-02-18T12:48:11.482Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 11,
+  "fields": {
+    "member": 18,
+    "code": "curious",
+    "earned_at": "2026-02-18T12:48:11.483Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 12,
+  "fields": {
+    "member": 18,
+    "code": "cyberaware",
+    "earned_at": "2026-02-18T12:48:11.484Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 13,
+  "fields": {
+    "member": 18,
+    "code": "no_skips",
+    "earned_at": "2026-02-18T12:48:11.484Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 14,
+  "fields": {
+    "member": 18,
+    "code": "streak_2",
+    "earned_at": "2026-02-18T12:48:11.485Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 15,
+  "fields": {
+    "member": 18,
+    "code": "streak_7",
+    "earned_at": "2026-02-18T12:48:11.485Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 16,
+  "fields": {
+    "member": 18,
+    "code": "first_step",
+    "earned_at": "2026-02-18T12:48:11.486Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 17,
+  "fields": {
+    "member": 18,
+    "code": "deep_dive",
+    "earned_at": "2026-02-18T12:48:11.486Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 18,
+  "fields": {
+    "member": 18,
+    "code": "streak_14",
+    "earned_at": "2026-02-18T12:48:11.487Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 19,
+  "fields": {
+    "member": 18,
+    "code": "xp_100",
+    "earned_at": "2026-02-18T12:48:11.487Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 20,
+  "fields": {
+    "member": 18,
+    "code": "almost_perfect",
+    "earned_at": "2026-02-18T12:48:11.488Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 21,
+  "fields": {
+    "member": 18,
+    "code": "no_mistakes",
+    "earned_at": "2026-02-18T12:48:11.488Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 22,
+  "fields": {
+    "member": 18,
+    "code": "to_the_end",
+    "earned_at": "2026-02-18T12:48:11.489Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 23,
+  "fields": {
+    "member": 18,
+    "code": "phishing",
+    "earned_at": "2026-02-18T12:48:11.489Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 24,
+  "fields": {
+    "member": 18,
+    "code": "all_modules",
+    "earned_at": "2026-02-18T12:48:11.490Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 25,
+  "fields": {
+    "member": 18,
+    "code": "level_2",
+    "earned_at": "2026-02-18T12:48:11.490Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 26,
+  "fields": {
+    "member": 18,
+    "code": "all_quizzes",
+    "earned_at": "2026-02-18T12:48:11.490Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 27,
+  "fields": {
+    "member": 18,
+    "code": "excellent",
+    "earned_at": "2026-02-18T12:48:11.491Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 28,
+  "fields": {
+    "member": 16,
+    "code": "first_step",
+    "earned_at": "2026-02-18T12:54:22.273Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 29,
+  "fields": {
+    "member": 16,
+    "code": "to_the_end",
+    "earned_at": "2026-02-18T12:54:22.274Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 30,
+  "fields": {
+    "member": 19,
+    "code": "almost_perfect",
+    "earned_at": "2026-02-18T12:59:01.458Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 31,
+  "fields": {
+    "member": 19,
+    "code": "first_quiz",
+    "earned_at": "2026-02-18T12:59:01.459Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 32,
+  "fields": {
+    "member": 19,
+    "code": "excellent",
+    "earned_at": "2026-02-18T12:59:01.460Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 33,
+  "fields": {
+    "member": 19,
+    "code": "no_mistakes",
+    "earned_at": "2026-02-18T12:59:01.460Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 34,
+  "fields": {
+    "member": 19,
+    "code": "first_step",
+    "earned_at": "2026-02-18T12:59:01.461Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 35,
+  "fields": {
+    "member": 19,
+    "code": "to_the_end",
+    "earned_at": "2026-02-18T12:59:01.461Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 36,
+  "fields": {
+    "member": 20,
+    "code": "first_quiz",
+    "earned_at": "2026-02-18T13:01:36.104Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 37,
+  "fields": {
+    "member": 20,
+    "code": "first_step",
+    "earned_at": "2026-02-18T13:01:36.105Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 38,
+  "fields": {
+    "member": 20,
+    "code": "to_the_end",
+    "earned_at": "2026-02-18T13:01:36.105Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 39,
+  "fields": {
+    "member": 20,
+    "code": "excellent",
+    "earned_at": "2026-02-18T13:01:36.106Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 40,
+  "fields": {
+    "member": 20,
+    "code": "almost_perfect",
+    "earned_at": "2026-02-18T13:01:36.106Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 41,
+  "fields": {
+    "member": 20,
+    "code": "no_mistakes",
+    "earned_at": "2026-02-18T13:01:36.107Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 42,
+  "fields": {
+    "member": 21,
+    "code": "xp_100",
+    "earned_at": "2026-02-18T13:02:01.762Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 43,
+  "fields": {
+    "member": 22,
+    "code": "first_step",
+    "earned_at": "2026-02-18T13:03:32.468Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 44,
+  "fields": {
+    "member": 22,
+    "code": "no_mistakes",
+    "earned_at": "2026-02-18T13:03:32.469Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 45,
+  "fields": {
+    "member": 22,
+    "code": "first_quiz",
+    "earned_at": "2026-02-18T13:03:32.469Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 46,
+  "fields": {
+    "member": 22,
+    "code": "excellent",
+    "earned_at": "2026-02-18T13:03:32.470Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 47,
+  "fields": {
+    "member": 22,
+    "code": "to_the_end",
+    "earned_at": "2026-02-18T13:03:32.470Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 48,
+  "fields": {
+    "member": 22,
+    "code": "almost_perfect",
+    "earned_at": "2026-02-18T13:03:32.471Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 49,
+  "fields": {
+    "member": 23,
+    "code": "excellent",
+    "earned_at": "2026-02-18T13:08:25.528Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 50,
+  "fields": {
+    "member": 23,
+    "code": "almost_perfect",
+    "earned_at": "2026-02-18T13:08:25.530Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 51,
+  "fields": {
+    "member": 23,
+    "code": "first_step",
+    "earned_at": "2026-02-18T13:08:25.530Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 52,
+  "fields": {
+    "member": 23,
+    "code": "first_quiz",
+    "earned_at": "2026-02-18T13:08:25.531Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 53,
+  "fields": {
+    "member": 23,
+    "code": "no_mistakes",
+    "earned_at": "2026-02-18T13:08:25.531Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 54,
+  "fields": {
+    "member": 23,
+    "code": "to_the_end",
+    "earned_at": "2026-02-18T13:08:25.532Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 55,
+  "fields": {
+    "member": 24,
+    "code": "streak_2",
+    "earned_at": "2026-02-18T13:08:40.035Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 56,
+  "fields": {
+    "member": 24,
+    "code": "start_of_journey",
+    "earned_at": "2026-02-18T13:08:40.036Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 57,
+  "fields": {
+    "member": 24,
+    "code": "xp_100",
+    "earned_at": "2026-02-18T13:08:40.037Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 58,
+  "fields": {
+    "member": 24,
+    "code": "first_quiz",
+    "earned_at": "2026-02-18T13:08:40.038Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 59,
+  "fields": {
+    "member": 24,
+    "code": "curious",
+    "earned_at": "2026-02-18T13:08:40.039Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 60,
+  "fields": {
+    "member": 24,
+    "code": "first_step",
+    "earned_at": "2026-02-18T13:08:40.039Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 61,
+  "fields": {
+    "member": 24,
+    "code": "streak_7",
+    "earned_at": "2026-02-18T13:08:40.040Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 62,
+  "fields": {
+    "member": 24,
+    "code": "finish_course",
+    "earned_at": "2026-02-18T13:08:40.040Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 63,
+  "fields": {
+    "member": 24,
+    "code": "level_2",
+    "earned_at": "2026-02-18T13:08:40.041Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 64,
+  "fields": {
+    "member": 24,
+    "code": "all_modules",
+    "earned_at": "2026-02-18T13:08:40.041Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 65,
+  "fields": {
+    "member": 24,
+    "code": "streak_14",
+    "earned_at": "2026-02-18T13:08:40.042Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 66,
+  "fields": {
+    "member": 24,
+    "code": "cyberaware",
+    "earned_at": "2026-02-18T13:08:40.042Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 67,
+  "fields": {
+    "member": 24,
+    "code": "no_skips",
+    "earned_at": "2026-02-18T13:08:40.043Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 68,
+  "fields": {
+    "member": 24,
+    "code": "deep_dive",
+    "earned_at": "2026-02-18T13:08:40.043Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 69,
+  "fields": {
+    "member": 24,
+    "code": "streak_5",
+    "earned_at": "2026-02-18T13:08:40.044Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 70,
+  "fields": {
+    "member": 24,
+    "code": "almost_perfect",
+    "earned_at": "2026-02-18T13:08:40.044Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 71,
+  "fields": {
+    "member": 24,
+    "code": "no_mistakes",
+    "earned_at": "2026-02-18T13:08:40.045Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 72,
+  "fields": {
+    "member": 24,
+    "code": "all_quizzes",
+    "earned_at": "2026-02-18T13:08:40.045Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 73,
+  "fields": {
+    "member": 24,
+    "code": "phishing",
+    "earned_at": "2026-02-18T13:08:40.046Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 74,
+  "fields": {
+    "member": 24,
+    "code": "to_the_end",
+    "earned_at": "2026-02-18T13:08:40.046Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 75,
+  "fields": {
+    "member": 24,
+    "code": "excellent",
+    "earned_at": "2026-02-18T13:08:40.047Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 76,
+  "fields": {
+    "member": 25,
+    "code": "xp_100",
+    "earned_at": "2026-02-18T13:10:35.776Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 77,
+  "fields": {
+    "member": 25,
+    "code": "level_2",
+    "earned_at": "2026-02-18T13:10:35.778Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 78,
+  "fields": {
+    "member": 26,
+    "code": "first_quiz",
+    "earned_at": "2026-02-18T13:12:42.598Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 79,
+  "fields": {
+    "member": 26,
+    "code": "excellent",
+    "earned_at": "2026-02-18T13:12:42.598Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 80,
+  "fields": {
+    "member": 26,
+    "code": "no_mistakes",
+    "earned_at": "2026-02-18T13:12:42.598Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 81,
+  "fields": {
+    "member": 26,
+    "code": "first_step",
+    "earned_at": "2026-02-18T13:12:42.598Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 82,
+  "fields": {
+    "member": 26,
+    "code": "almost_perfect",
+    "earned_at": "2026-02-18T13:12:42.612Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 83,
+  "fields": {
+    "member": 26,
+    "code": "to_the_end",
+    "earned_at": "2026-02-18T13:12:42.612Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 84,
+  "fields": {
+    "member": 28,
+    "code": "excellent",
+    "earned_at": "2026-02-18T13:15:26.004Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 85,
+  "fields": {
+    "member": 28,
+    "code": "first_step",
+    "earned_at": "2026-02-18T13:15:26.005Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 86,
+  "fields": {
+    "member": 28,
+    "code": "first_quiz",
+    "earned_at": "2026-02-18T13:15:26.007Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 87,
+  "fields": {
+    "member": 28,
+    "code": "to_the_end",
+    "earned_at": "2026-02-18T13:15:26.007Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 88,
+  "fields": {
+    "member": 28,
+    "code": "no_mistakes",
+    "earned_at": "2026-02-18T13:15:26.008Z"
+  }
+},
+{
+  "model": "members.memberachievement",
+  "pk": 89,
+  "fields": {
+    "member": 28,
+    "code": "almost_perfect",
+    "earned_at": "2026-02-18T13:15:26.008Z"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add member",
+    "content_type": [
+      "members",
+      "member"
+    ],
+    "codename": "add_member"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change member",
+    "content_type": [
+      "members",
+      "member"
+    ],
+    "codename": "change_member"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete member",
+    "content_type": [
+      "members",
+      "member"
+    ],
+    "codename": "delete_member"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view member",
+    "content_type": [
+      "members",
+      "member"
+    ],
+    "codename": "view_member"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add course",
+    "content_type": [
+      "members",
+      "course"
+    ],
+    "codename": "add_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change course",
+    "content_type": [
+      "members",
+      "course"
+    ],
+    "codename": "change_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete course",
+    "content_type": [
+      "members",
+      "course"
+    ],
+    "codename": "delete_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view course",
+    "content_type": [
+      "members",
+      "course"
+    ],
+    "codename": "view_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add lecture",
+    "content_type": [
+      "members",
+      "lecture"
+    ],
+    "codename": "add_lecture"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change lecture",
+    "content_type": [
+      "members",
+      "lecture"
+    ],
+    "codename": "change_lecture"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete lecture",
+    "content_type": [
+      "members",
+      "lecture"
+    ],
+    "codename": "delete_lecture"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view lecture",
+    "content_type": [
+      "members",
+      "lecture"
+    ],
+    "codename": "view_lecture"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add lecture question",
+    "content_type": [
+      "members",
+      "lecturequestion"
+    ],
+    "codename": "add_lecturequestion"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change lecture question",
+    "content_type": [
+      "members",
+      "lecturequestion"
+    ],
+    "codename": "change_lecturequestion"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete lecture question",
+    "content_type": [
+      "members",
+      "lecturequestion"
+    ],
+    "codename": "delete_lecturequestion"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view lecture question",
+    "content_type": [
+      "members",
+      "lecturequestion"
+    ],
+    "codename": "view_lecturequestion"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add member lecture progress",
+    "content_type": [
+      "members",
+      "memberlectureprogress"
+    ],
+    "codename": "add_memberlectureprogress"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change member lecture progress",
+    "content_type": [
+      "members",
+      "memberlectureprogress"
+    ],
+    "codename": "change_memberlectureprogress"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete member lecture progress",
+    "content_type": [
+      "members",
+      "memberlectureprogress"
+    ],
+    "codename": "delete_memberlectureprogress"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view member lecture progress",
+    "content_type": [
+      "members",
+      "memberlectureprogress"
+    ],
+    "codename": "view_memberlectureprogress"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add member quiz attempt",
+    "content_type": [
+      "members",
+      "memberquizattempt"
+    ],
+    "codename": "add_memberquizattempt"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change member quiz attempt",
+    "content_type": [
+      "members",
+      "memberquizattempt"
+    ],
+    "codename": "change_memberquizattempt"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete member quiz attempt",
+    "content_type": [
+      "members",
+      "memberquizattempt"
+    ],
+    "codename": "delete_memberquizattempt"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view member quiz attempt",
+    "content_type": [
+      "members",
+      "memberquizattempt"
+    ],
+    "codename": "view_memberquizattempt"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add member achievement",
+    "content_type": [
+      "members",
+      "memberachievement"
+    ],
+    "codename": "add_memberachievement"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change member achievement",
+    "content_type": [
+      "members",
+      "memberachievement"
+    ],
+    "codename": "change_memberachievement"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete member achievement",
+    "content_type": [
+      "members",
+      "memberachievement"
+    ],
+    "codename": "delete_memberachievement"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view member achievement",
+    "content_type": [
+      "members",
+      "memberachievement"
+    ],
+    "codename": "view_memberachievement"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add member daily activity",
+    "content_type": [
+      "members",
+      "memberdailyactivity"
+    ],
+    "codename": "add_memberdailyactivity"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change member daily activity",
+    "content_type": [
+      "members",
+      "memberdailyactivity"
+    ],
+    "codename": "change_memberdailyactivity"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete member daily activity",
+    "content_type": [
+      "members",
+      "memberdailyactivity"
+    ],
+    "codename": "delete_memberdailyactivity"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view member daily activity",
+    "content_type": [
+      "members",
+      "memberdailyactivity"
+    ],
+    "codename": "view_memberdailyactivity"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user settings",
+    "content_type": [
+      "members",
+      "usersettings"
+    ],
+    "codename": "add_usersettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user settings",
+    "content_type": [
+      "members",
+      "usersettings"
+    ],
+    "codename": "change_usersettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user settings",
+    "content_type": [
+      "members",
+      "usersettings"
+    ],
+    "codename": "delete_usersettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user settings",
+    "content_type": [
+      "members",
+      "usersettings"
+    ],
+    "codename": "view_usersettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add login history",
+    "content_type": [
+      "members",
+      "loginhistory"
+    ],
+    "codename": "add_loginhistory"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change login history",
+    "content_type": [
+      "members",
+      "loginhistory"
+    ],
+    "codename": "change_loginhistory"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete login history",
+    "content_type": [
+      "members",
+      "loginhistory"
+    ],
+    "codename": "delete_loginhistory"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view login history",
+    "content_type": [
+      "members",
+      "loginhistory"
+    ],
+    "codename": "view_loginhistory"
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$BtwJLTaijwVaY0sG0P8qhr$gL08YWFI72O3SReSSkalpiOjXc2Go2IJ6zI+y7BTJ/k=",
+    "last_login": "2026-02-14T04:41:00.482Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-01-29T10:27:27.793Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$8Su3MtWzeKO1PXWB2z6d9U$SNag06IWv4UDgsnoM2AA7ys4NqoSB/hU7mgj1Py34nc=",
+    "last_login": "2026-02-02T09:24:59.759Z",
+    "is_superuser": true,
+    "username": "Admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-02-02T09:21:47.434Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$VAhGoGEF6ZiIvVq6supsPM$Q+WU+7+a5JSb9l66WeCTSsjHEfibd+b92Lf2Shv+ww8=",
+    "last_login": "2026-02-03T14:45:31.587Z",
+    "is_superuser": false,
+    "username": "admin2",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-03T14:45:31.045Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$pTEQUrcue7XgQLzAULIsek$hUz+FJUqQMX9I6q2QKZtedSv6q5l4YK1Z/DLOnKHYqQ=",
+    "last_login": "2026-02-03T15:37:19.593Z",
+    "is_superuser": false,
+    "username": "admin3",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-03T15:37:19.067Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Ph0P07V6c8goPpw7vNrjBH$rZuCGlmO9qL9igmA3wCzWriVcT2UezdJMHmMbh1UZcU=",
+    "last_login": "2026-02-03T16:12:01.127Z",
+    "is_superuser": false,
+    "username": "Suck my dick",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-03T16:12:00.609Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$L52adfAWC4aiIEubaLXGpL$h1e+0n7SFgD9F7ZCxO5r9EJMoNz3LnVgIWoLlmJgVXk=",
+    "last_login": "2026-02-05T18:37:58.050Z",
+    "is_superuser": false,
+    "username": "Elnur",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-05T18:37:57.529Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$l076gwFf57xeKJoLWzCsmd$dgwcAgcw5jj4hN1L/Th8gEt7IoyGS/hdX3sjXqX/T4E=",
+    "last_login": "2026-02-05T18:50:12.840Z",
+    "is_superuser": false,
+    "username": "TrueMetalhead",
+    "first_name": "",
+    "last_name": "",
+    "email": "escaliburhuyev@mail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-05T18:50:12.312Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Hs0BD94rkKaOzJf4mwVyKu$rqMKwSfsNkzFS6XLNzDKIn0ca+b7BPPGZ8vd7GG42v0=",
+    "last_login": "2026-02-07T05:44:37.637Z",
+    "is_superuser": false,
+    "username": "dilshodergashev",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-07T05:43:09.941Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$20OK8ujq47Rlnq7p9yXNpL$L2Kz6dAUJY9YtlGgkg5Oz3GG8rjLRubw6/Dg6nNsy8I=",
+    "last_login": "2026-02-07T16:24:44.338Z",
+    "is_superuser": false,
+    "username": "ardkon@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "ardkon@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-07T16:24:43.817Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$XgKNsP9f8utcLJeXcQDYrg$6aWhvTDj6OGXVB/QF8POqBD2A5b/Wp5fPNlehuf+ya4=",
+    "last_login": "2026-02-07T16:31:44.526Z",
+    "is_superuser": false,
+    "username": "admin@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-07T16:31:44.019Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$gozz1QhwIDVntsGVWdHKee$cypoqolJC+PInD0XGiIleCv0NHJCQrliFRvripr4DFE=",
+    "last_login": "2026-02-09T10:20:22.004Z",
+    "is_superuser": false,
+    "username": "admin@admin.ru",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@admin.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-09T10:20:21.490Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$QlkQiTPolZPwpsZiuC8ZKy$f9rnPDQENj1KEV9Q4O1MzzX1omgp/Eh/kB/AjrVDkhE=",
+    "last_login": "2026-02-09T10:35:58.556Z",
+    "is_superuser": false,
+    "username": "erik@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "erik@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-09T10:35:58.034Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$3ynLPrLzvEvUJHg1R0H3px$8NPf2fHDQY46fUVFG2Dp9uaNhPAy0MJraDR2+TfkbYA=",
+    "last_login": "2026-02-09T11:22:02.767Z",
+    "is_superuser": false,
+    "username": "sarik@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "sarik@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-09T11:22:02.253Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$3TSooLW2J1833jssF2Ayhl$6tqlraGGxGyhSrOBtLqRyTtOeCxBI1kudE1vC5ZY8fI=",
+    "last_login": "2026-02-09T11:30:43.354Z",
+    "is_superuser": false,
+    "username": "random@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "random@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-09T11:25:44.264Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$0uHqBKxYUvrS9DDA265wa0$NJEyxqB9D8f74ZhuaXKojBzqsFXh0heJCsanjjgPku0=",
+    "last_login": "2026-02-09T11:31:14.651Z",
+    "is_superuser": false,
+    "username": "risk@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "risk@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-09T11:31:14.150Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$be7w8gB0hSaU5LM3B7W57D$lPnMUfz5Au2EtHOPddeHDe6T4m7XsU8kjP/Uz742RHo=",
+    "last_login": "2026-02-10T14:12:09.269Z",
+    "is_superuser": false,
+    "username": "admin@admin.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@admin.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-10T14:12:08.752Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$UIDfDW782p53zlDU9LmfgR$1FEQV+0r46R9AbZoaxHyXHEjzM7M7rmjHFZ/LamWiT8=",
+    "last_login": "2026-02-14T04:39:41.508Z",
+    "is_superuser": false,
+    "username": "dilshodergashev@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "dilshodergashev@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-14T04:36:16.009Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$cKqxv5EFAsMTOXYEHdlbVK$33q190A6DEasNCIT2OL8XocED0QbdqMyIhxFYbd2QoA=",
+    "last_login": "2026-02-21T04:17:16.861Z",
+    "is_superuser": false,
+    "username": "arslan@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "arslan@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-17T04:14:32.762Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$huebu8kQNPigCtq5gQC5UC$VTxd+QCQm1eQ4nBymwuR+f9g7M9dCzChH1JU6bw2xn4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "test_user@example.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "test_user@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T12:46:58.882Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$IHs9QrKJPHioqIWZFCZS2I$kIaWAypk9E4PUEaFYrTcRzukbuXA5Re2T0bjPbhd7Gk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "superuser@example.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "superuser@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T12:48:10.874Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$ncaVaTq6R0KjcxJJ64lz36$IwvwVgDniseYpoh9CBXN6DiFXr9Lo7yZtRyHmSycHQc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "fixed_user@test.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "fixed_user@test.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T12:59:00.901Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$BqjpOob9GFKntm8U8iJ5l9$QqIkB26ZjoaPPl1q9m+CjtHCP/UMyd/puC0bOVAwbcE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "sidebar_test@test.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "sidebar_test@test.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T13:01:35.560Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$hUdamEv2rZZ7nekf8AdFa9$HnHvmDBrgMxkrNBr+q5qvs9WjpUvxQtMGKQvPOdSK7o=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "demo@example.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "demo@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T13:02:01.219Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$zqRDqtTYqwuwI0TNnxtbhR$13Pn7dcuj7KkulU2sVQ/Fe8IKDqvy8RsVQMdVk7vsHA=",
+    "last_login": "2026-02-18T13:03:18.295Z",
+    "is_superuser": false,
+    "username": "riza@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "riza@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T13:03:17.794Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$R7GRRe4SzYBbroQTqHmFy9$WBHFJ30gfQNPA4DEmqqwQZHPcRXsCXQBroWLffyO8Ms=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "english_user@test.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "english_user@test.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T13:08:24.978Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$5VYxFE1P18r4DYhrIyzA8o$1sxXeoDh1gVY1/aj65PAIzT5lnUyylfuHoATTkL+HOs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "english_full@test.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "english_full@test.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T13:08:39.433Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$nEu6z3oML89FCjQd4Boj6x$84LSSaoZ0HXvszVo+T6dync7zwZoPM+HxWrd9Zh3Q5A=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "john.smith@cyberaware.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "john.smith@cyberaware.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T13:10:35.233Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$zkdUmCZzsjoxulXDQpUn4E$20sQOJnEDudCo/KKJrRPGgaTvf45NOUHbblLPRKU+RI=",
+    "last_login": "2026-02-18T13:17:11.447Z",
+    "is_superuser": false,
+    "username": "rek@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "rek@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T13:12:21.708Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$WdcXkca7R85x8tFqBuVzyZ$aLRztSPjnao1gnbTYulIuJnoPLSycwv5IF+w+GOoN28=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "alex@test.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "alex@test.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T13:13:56.160Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$bZEE4ORcstkEvVNafFRj6J$hzdVdaRLj1R6N7fwwt6+cKGONMyuhWTSK2KmCrJ9K5w=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "final_test@test.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "final_test@test.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-18T13:15:25.460Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "members.member",
+  "pk": 1,
+  "fields": {
+    "user": null,
+    "first_name": "admin2",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 2,
+  "fields": {
+    "user": null,
+    "first_name": "admin3",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 3,
+  "fields": {
+    "user": null,
+    "first_name": "Suck my dick",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 4,
+  "fields": {
+    "user": null,
+    "first_name": "Elnur",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "TrueMetalhead"
+    ],
+    "first_name": "TrueMetalhead",
+    "last_name": "GIGADICTH",
+    "email": "escaliburhuyev@mail.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "dilshodergashev"
+    ],
+    "first_name": "dilshodergashev",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "ardkon@gmail.com"
+    ],
+    "first_name": "ardkon",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "admin@gmail.com"
+    ],
+    "first_name": "admin",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "admin@admin.ru"
+    ],
+    "first_name": "admin",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "erik@gmail.com"
+    ],
+    "first_name": "erik",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 11,
+  "fields": {
+    "user": [
+      "sarik@gmail.com"
+    ],
+    "first_name": "sarik",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 12,
+  "fields": {
+    "user": [
+      "random@gmail.com"
+    ],
+    "first_name": "random",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 13,
+  "fields": {
+    "user": [
+      "risk@gmail.com"
+    ],
+    "first_name": "risk",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 25,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 14,
+  "fields": {
+    "user": [
+      "admin@admin.com"
+    ],
+    "first_name": "admin",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 25,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 15,
+  "fields": {
+    "user": [
+      "dilshodergashev@gmail.com"
+    ],
+    "first_name": "Dilshod",
+    "last_name": "Ergashev",
+    "email": "dilshodergashev@gmail.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 0,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 16,
+  "fields": {
+    "user": [
+      "arslan@gmail.com"
+    ],
+    "first_name": "arslan",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 25,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 17,
+  "fields": {
+    "user": [
+      "test_user@example.com"
+    ],
+    "first_name": "Test",
+    "last_name": "User",
+    "email": "test_user@example.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 25,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 18,
+  "fields": {
+    "user": [
+      "superuser@example.com"
+    ],
+    "first_name": "Journey",
+    "last_name": "Tester",
+    "email": "superuser@example.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 400,
+    "level": 2
+  }
+},
+{
+  "model": "members.member",
+  "pk": 19,
+  "fields": {
+    "user": [
+      "fixed_user@test.com"
+    ],
+    "first_name": "Test",
+    "last_name": "User",
+    "email": "fixed_user@test.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 25,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 20,
+  "fields": {
+    "user": [
+      "sidebar_test@test.com"
+    ],
+    "first_name": "Test",
+    "last_name": "User",
+    "email": "sidebar_test@test.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 25,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 21,
+  "fields": {
+    "user": [
+      "demo@example.com"
+    ],
+    "first_name": "Александр",
+    "last_name": "Петров",
+    "email": "demo@example.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 150,
+    "level": 1
+  }
+},
+{
+  "model": "members.member",
+  "pk": 22,
+  "fields": {
+    "user": [
+      "riza@gmail.com"
+    ],
+    "first_name": "riza",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 25,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 23,
+  "fields": {
+    "user": [
+      "english_user@test.com"
+    ],
+    "first_name": "Test",
+    "last_name": "User",
+    "email": "english_user@test.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 25,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 24,
+  "fields": {
+    "user": [
+      "english_full@test.com"
+    ],
+    "first_name": "Journey",
+    "last_name": "Tester",
+    "email": "english_full@test.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 400,
+    "level": 2
+  }
+},
+{
+  "model": "members.member",
+  "pk": 25,
+  "fields": {
+    "user": [
+      "john.smith@cyberaware.com"
+    ],
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "john.smith@cyberaware.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 275,
+    "level": 2
+  }
+},
+{
+  "model": "members.member",
+  "pk": 26,
+  "fields": {
+    "user": [
+      "rek@gmail.com"
+    ],
+    "first_name": "rek",
+    "last_name": "",
+    "email": null,
+    "phone": null,
+    "joined_date": null,
+    "xp": 25,
+    "level": 0
+  }
+},
+{
+  "model": "members.member",
+  "pk": 27,
+  "fields": {
+    "user": [
+      "alex@test.com"
+    ],
+    "first_name": "Alex",
+    "last_name": "Johnson",
+    "email": "alex@test.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 50,
+    "level": 1
+  }
+},
+{
+  "model": "members.member",
+  "pk": 28,
+  "fields": {
+    "user": [
+      "final_test@test.com"
+    ],
+    "first_name": "Test",
+    "last_name": "User",
+    "email": "final_test@test.com",
+    "phone": null,
+    "joined_date": null,
+    "xp": 25,
+    "level": 0
+  }
+},
+{
+  "model": "members.usersettings",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "arslan@gmail.com"
+    ],
+    "theme": "dark",
+    "accent_color": "#38bdf8",
+    "compact_mode": false,
+    "font_size": "medium",
+    "animations_enabled": true,
+    "notify_course_updates": true,
+    "notify_new_lectures": true,
+    "notify_email": true,
+    "notify_in_app": true,
+    "notify_telegram": false,
+    "profile_visibility": "everyone",
+    "analytics_tracking": true,
+    "two_factor_enabled": false,
+    "two_factor_secret": "",
+    "updated_at": "2026-02-20T13:24:07.060Z"
+  }
+},
+{
+  "model": "members.loginhistory",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "arslan@gmail.com"
+    ],
+    "ip_address": "127.0.0.1",
+    "device": "Opera on Windows 10",
+    "location": "Unknown location",
+    "session_key": "u9zskbodfvtx6yteez7s2ea838octzds",
+    "logged_in_at": "2026-02-20T13:18:25.787Z",
+    "is_active": true,
+    "logged_out_at": null
+  }
+},
+{
+  "model": "members.loginhistory",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "arslan@gmail.com"
+    ],
+    "ip_address": "127.0.0.1",
+    "device": "Opera on Windows 10",
+    "location": "Unknown location",
+    "session_key": "u9zskbodfvtx6yteez7s2ea838octzds",
+    "logged_in_at": "2026-02-20T13:21:27.328Z",
+    "is_active": true,
+    "logged_out_at": null
+  }
+},
+{
+  "model": "members.loginhistory",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "arslan@gmail.com"
+    ],
+    "ip_address": "127.0.0.1",
+    "device": "Opera on Windows 10",
+    "location": "Unknown location",
+    "session_key": "u9zskbodfvtx6yteez7s2ea838octzds",
+    "logged_in_at": "2026-02-20T13:23:10.902Z",
+    "is_active": true,
+    "logged_out_at": null
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-02-09T10:33:53.617Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "members",
+      "lecture"
+    ],
+    "object_id": "13",
+    "object_repr": "AI Cyber Security – Lecture 1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}, {\"added\": {\"name\": \"lecture question\", \"object\": \"Q for 13: What is the key advantage of AI systems in cyberse...\"}}, {\"added\": {\"name\": \"lecture question\", \"object\": \"Q for 13: What does Behavior Analytics mean?...\"}}, {\"added\": {\"name\": \"lecture question\", \"object\": \"Q for 13: What is the difference between AI malware analysis...\"}}, {\"added\": {\"name\": \"lecture question\", \"object\": \"Q for 13: What is the risk associated with using AI in cyber...\"}}, {\"added\": {\"name\": \"lecture question\", \"object\": \"Q for 13: What role does AI play in incident response?...\"}}]"
+  }
+}
+]
