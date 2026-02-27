@@ -12,7 +12,10 @@ env/
 venv/
 ENV/
 .venv/
-myworld/
+myworld/Lib/
+myworld/Include/
+myworld/Scripts/
+myworld/pyvenv.cfg
 
 # Django
 *.log
