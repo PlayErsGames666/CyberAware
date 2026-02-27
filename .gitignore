@@ -3,6 +3,7 @@
 
 # Python
 __pycache__/
+*.рус
 *.py[cod]
 *$py.class
 *.so
@@ -11,6 +12,7 @@ env/
 venv/
 ENV/
 .venv/
+myworld/
 
 # Django
 *.log
