@@ -17,6 +17,10 @@ myworld/Include/
 myworld/Scripts/
 myworld/pyvenv.cfg
 
+# Docs not for repository
+ACHIEVEMENTS_SYSTEM.md
+TESTING_GUIDE.md
+
 # Django
 *.log
 db.sqlite3
