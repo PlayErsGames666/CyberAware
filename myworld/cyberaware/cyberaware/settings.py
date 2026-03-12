@@ -32,6 +32,11 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://cyberaware-production-77ba.up.railway.app'
+]
+
+
 # Application definition
 
 INSTALLED_APPS = [
