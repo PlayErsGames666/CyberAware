@@ -1,0 +1,13 @@
+# Local PostgreSQL settings
+# Rename to local_settings.py and modify as needed
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cyberaware',
+        'USER': 'your_postgres_user',
+        'PASSWORD': 'your_postgres_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
