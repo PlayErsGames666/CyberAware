@@ -257,6 +257,18 @@
             border: 1px solid rgba(239, 68, 68, 0.3);
         }
 
+        .field-error {
+            margin-top: 6px;
+            font-size: 0.8rem;
+            color: #f87171;
+            padding-left: 12px;
+            display: none;
+        }
+
+        .field-error.visible {
+            display: block;
+        }
+
         @media (max-width: 900px) {
             .shell {
                 max-width: 640px;
@@ -309,7 +321,8 @@
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ next }}">
                 <div class="field-group">
-                    <input class="pill-input" type="email" name="email" placeholder="email" required autocomplete="email">
+                    <input class="pill-input" type="email" name="email" id="email" placeholder="email" required autocomplete="email">
+                    <p class="field-error" id="email-error"></p>
                 </div>
                 <div class="field-group">
                     <input class="pill-input" type="password" name="password" placeholder="password" required autocomplete="current-password">
@@ -336,5 +349,35 @@
         </div>
     </section>
 </div>
+<script>
+    (function() {
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('email-error');
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function checkEmail() {
+            const email = emailInput.value.trim();
+            if (email && !validateEmail(email)) {
+                emailError.textContent = 'Please enter a valid email address (e.g., user@gmail.com)';
+                emailError.classList.add('visible');
+                emailInput.style.borderColor = '#ef4444';
+            } else {
+                emailError.classList.remove('visible');
+                emailInput.style.borderColor = '';
+            }
+        }
+
+        emailInput.addEventListener('blur', checkEmail);
+        emailInput.addEventListener('input', function() {
+            if (emailError.classList.contains('visible')) {
+                checkEmail();
+            }
+        });
+    })();
+</script>
 </body>
 </html>
