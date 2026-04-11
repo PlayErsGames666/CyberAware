@@ -502,7 +502,7 @@
                     <form id="quizForm">
                         {% csrf_token %}
                         {% for q in questions %}
-                            <fieldset style="margin-bottom: 14px; padding: 12px 12px 10px; border-radius: 10px; border: 1px solid rgba(148, 163, 184, 0.35);">
+                            <fieldset id="question-{{ q.id }}" style="margin-bottom: 14px; padding: 12px 12px 10px; border-radius: 10px; border: 1px solid rgba(148, 163, 184, 0.35);">
                                 <legend style="font-size: 0.9rem; margin-bottom: 8px; color: var(--text-main);">
                                     {{ forloop.counter }}. {{ q.text }}
                                 </legend>
@@ -667,7 +667,22 @@
                 } else {
                     if (statusEl) {
                         statusEl.style.color = "#fecaca";
-                        statusEl.textContent = result.error || "Some answers are incorrect. Please try again.";
+                        let errorText = result.error || "Some answers are incorrect. Please try again.";
+                        
+                        // Add specific incorrect questions info
+                        if (result.incorrect_questions && result.incorrect_questions.length > 0) {
+                            const questionNums = result.incorrect_questions.map(qid => {
+                                const qEl = document.getElementById(`question-${qid}`);
+                                if (qEl) {
+                                    qEl.style.borderColor = "#ef4444";
+                                    qEl.style.background = "rgba(239, 68, 68, 0.1)";
+                                }
+                                const legend = qEl?.querySelector('legend');
+                                return legend ? legend.textContent.split('.')[0].trim() : qid;
+                            });
+                            errorText += ` Incorrect questions: ${questionNums.join(", ")}`;
+                        }
+                        statusEl.textContent = errorText;
                     }
 
                     // Allow the user to correct answers and submit again
