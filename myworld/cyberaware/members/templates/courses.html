@@ -257,8 +257,13 @@
         }
 
         .course-label {
-            display: contents;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             cursor: pointer;
+            flex: 1;
+            padding: 14px 16px;
+            margin: -14px -16px;
         }
 
         .course-title {
@@ -482,9 +487,10 @@
 
             input?.addEventListener("change", () => setInfo(getCardDescription(card)));
 
-            // Click on course title opens lectures page directly
-            title?.addEventListener("click", (event) => {
-                event.preventDefault();
+            // Click on course card opens lectures page directly
+            card?.addEventListener("click", (event) => {
+                // Don't navigate if clicking the radio input itself
+                if (event.target.classList.contains('course-input')) return;
                 const id = input?.value;
                 if (!id) return;
                 window.location.href = `/courses/${id}/`;
